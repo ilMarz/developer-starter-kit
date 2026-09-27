@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "proposed-confirm-per-task",
+  "scope": null,
+  "acceptance_spec": null,
+  "max_fix_attempts": 3,
+  "max_minutes": 60,
+  "max_cost": null,
+  "currency": null,
+  "cost_tracking": "not-configured",
+  "on_budget_exhausted": "stop-and-preserve-candidate",
+  "on_no_progress": "stop-after-repeated-failure-with-no-new-evidence",
+  "external_effects": "task-specific-authorization",
+  "note": "Values are proposed defaults, not user-approved budgets. Enforcement depends on the client."
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "proposed",
+  "present_working_agreement": true,
+  "reuse_existing_user_choices": true,
+  "skills": {
+    "selection": "suggest-per-task",
+    "preferred": [],
+    "excluded": []
+  },
+  "conventions": {
+    "vertical_slices": "when-useful",
+    "adr": "material-decisions-only",
+    "progress_log": "suggested"
+  },
+  "execution": {
+    "mode": "suggest-per-task",
+    "agentic_loop": "ask-if-not-already-chosen",
+    "subagents": "ask-if-not-already-authorized"
+  },
+  "tools": {
+    "selection": "available-and-task-relevant",
+    "excluded": []
+  },
+  "models_file": ".devkit/models.json",
+  "budgets_file": ".devkit/loop.json",
+  "note": "Agent-read preferences, not runtime enforcement. Task choices override defaults; persist them for future tasks only when requested."
+}

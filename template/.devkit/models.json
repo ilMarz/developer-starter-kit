@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "needs-client-capability-check",
+  "roles": {
+    "planner": {
+      "model": null,
+      "reasoning_effort": null,
+      "preferred_tier": "strong",
+      "fallback": "inherit-client-model-with-disclosure"
+    },
+    "implementer": {
+      "model": null,
+      "reasoning_effort": null,
+      "preferred_tier": "balanced",
+      "fallback": "inherit-client-model-with-disclosure"
+    },
+    "reviewer": {
+      "model": null,
+      "reasoning_effort": null,
+      "preferred_tier": "balanced-or-strong",
+      "fallback": "inherit-client-model-with-disclosure"
+    },
+    "debugger": {
+      "model": null,
+      "reasoning_effort": null,
+      "preferred_tier": "balanced",
+      "fallback": "inherit-client-model-with-disclosure"
+    },
+    "researcher": {
+      "model": null,
+      "reasoning_effort": null,
+      "preferred_tier": "fast-for-bounded-retrieval",
+      "fallback": "inherit-client-model-with-disclosure"
+    }
+  },
+  "note": "Preferences consumed by the coordinator, not native client configuration. Never claim a model was selected unless the dispatch actually used it."
+}
