@@ -1,40 +1,50 @@
-# Verifica del kit
+# Kit validation
 
-Verificato il 27 settembre 2026 su macOS con Python locale.
+Verified on September 27, 2026, on macOS with local Python.
 
-- `python3 tools/verify.py`: PASS, 15 snapshot vendor corrispondono agli hash registrati.
-- `python3 -m unittest discover -s tests -v`: PASS, 12 test. Import in directory con spazi,
-  dry-run senza scritture, conservazione file utente, proposte di merge, blocco preventivo
-  dei conflitti, idempotenza, symlink interni rifiutati, drift e vendor alterato rilevati.
-- Esecuzione reale dell'helper SDD task-brief sul template del piano in un repository Git
-  temporaneo: PASS, task estratto e scratch escluso da Git.
-- Controllo strutturale di nome/descrizione frontmatter e directory sulle 17 skill: PASS.
-- Il validatore ufficiale quick_validate.py è stato tentato ma non eseguito: PyYAML assente
-  nei due runtime Python disponibili. Nessuna installazione globale effettuata. Il controllo
-  strutturale sopra è più limitato e non viene presentato come equivalente.
-- Review indipendente: nessun difetto bloccante riprodotto; ulteriori prove di trasferibilità,
-  repeat import e conservazione ledger. Vedi `INDEPENDENT-REVIEW.md` per il protocollo.
+- `python3 tools/verify.py`: PASS; 15 vendor snapshots match their recorded hashes.
+- `python3 -m unittest discover -s tests -v`: PASS; 12 tests covering paths with spaces,
+  dry runs without writes, user-file preservation, merge proposals, conflict detection before
+  writes, idempotency, rejection of internal symlinks, drift, and vendor tampering.
+- Actual SDD task-brief execution against the plan template in a temporary Git repository:
+  PASS; task extracted and scratch excluded from Git.
+- Structural name/description frontmatter and directory check for all 17 skills: PASS.
+- During initial validation, the official quick_validate.py validator was attempted but could not run: PyYAML was absent
+  from the two available Python runtimes. No global installation was performed. The structural
+  check above is more limited and is not presented as equivalent.
+- Independent review: no blocking defect reproduced; additional portability, repeated import,
+  and ledger preservation checks. See `INDEPENDENT-REVIEW.md` for the protocol.
 
-Durante i test è stato corretto un rifiuto improprio dei percorsi temporanei macOS:
-la radice scelta viene risolta, mentre i symlink interni alla destinazione sono rifiutati.
+Testing uncovered and fixed an incorrect rejection of macOS temporary paths:
+the chosen root is resolved, while symlinks inside the destination are rejected.
 
-## Limiti
+## Limitations
 
-Le prove di ripresa, modello indisponibile e budget esaurito includono valutazioni ragionate
-documentate, non una certificazione del comportamento live degli agenti. La suite in `evals/`
-resta da eseguire sistematicamente su progetti reali e con misure comparabili.
-Nessun provider chiamato; nessuna prova end-to-end di un prodotto generato. Nessuna garanzia
-di supporto ad altri client. La CI GitHub ha superato verifica snapshot e 12 test su Linux con Python 3.11 e 3.13
-alla revisione `08698acd31f5f6bd48404a78bb901e3657e6549c`: [run verificata](https://github.com/ilMarz/developer-starter-kit/actions/runs/36317957804).
-L'import è progettato per una singola esecuzione alla volta: non fornisce transazioni
-filesystem o protezione da processi concorrenti che cambiano i percorsi durante la copia.
-Modelli e budget JSON sono istruzioni operative, non enforcement tecnico di spesa o permessi.
+Resume, unavailable-model, and exhausted-budget cases include documented tabletop evaluations,
+not certification of live agent behavior. The `evals/` suite still needs systematic execution
+on real projects with comparable measurements.
+No provider was called; no generated product was tested end to end. Other clients are not guaranteed.
+GitHub CI passed snapshot verification and 12 tests on Linux with Python 3.11 and 3.13 at
+revision `08698acd31f5f6bd48404a78bb901e3657e6549c`:
+[verified run](https://github.com/ilMarz/developer-starter-kit/actions/runs/36317957804).
+Import is designed for one execution at a time: it does not provide filesystem transactions or
+protect against concurrent processes changing paths during copying.
+Model/budget JSON files are operational instructions, not technical spending or permission enforcement.
 
-## Aggiornamento 0.2.0
+## 0.2.0 update
 
-Ripetuti con esito positivo i 12 test e la verifica dei 15 snapshot vendor dopo il
-trasferimento nella directory autonoma. Le due skill originali sono dev-workflow e
-update-devkit. Il collegamento relativo .agents/skills/update-devkit è presente.
-Il README documenta i parametri reali del bootstrap e separa comandi terminale da
-prompt in chat. La scelta del subset prima delle modifiche è descritta nel working
-agreement; la sua efficacia operativa resta da valutare con agenti su casi reali.
+The 12 tests and verification of 15 vendor snapshots passed again after relocation to the standalone
+directory. The two original skills are dev-workflow and update-devkit.
+The relative `.agents/skills/update-devkit` link is present.
+The README documents actual bootstrap parameters and separates terminal commands from chat prompts.
+Subset selection before changes is documented in the working agreement; its operational effectiveness
+still needs evaluation with agents on real tasks.
+
+## 0.2.1 English translation
+
+All 12 bootstrap tests and vendor integrity checks passed after translation. The two original
+skills passed the official quick_validate.py validator using PyYAML in a temporary virtual
+environment, removed afterward; no global Python package installation was required.
+The CLI changes were also compared at the Python AST level: only string constants changed.
+Third-party skill and license bytes remain identical to their pinned snapshots.
+This validates structure and import behavior, not live agent behavior in English.

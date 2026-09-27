@@ -1,30 +1,30 @@
-# Aggiornamento kit — [data / tema]
+# Kit update — [date / topic]
 
-Stato: proposta. Kit/copia esaminata: [percorso e versione].
-Perimetro autorizzato: [ricerca / applicazione degli ID già selezionati].
-Inventario: [revisioni/hash e personalizzazioni pertinenti].
-Ricerca: [data, fonti aperte, limiti, eventuale assenza di accesso].
+Status: proposal. Kit/copy inspected: [path and version].
+Authorized scope: [research / application of already selected IDs].
+Inventory: [relevant revisions/hashes and customizations].
+Research: [date, sources opened, limitations, any missing access].
 
-## Selezione
+## Selection
 
-| ID | Tipo | Novità/cambiamento | Problema risolto | Raccomandazione |
+| ID | Type | Discovery/change | Problem solved | Recommendation |
 | --- | --- | --- | --- | --- |
-| U-01 | opportunità / aggiornamento / semplificazione | [...] | [...] | integrare / sperimentare / rimandare / scartare |
+| U-01 | opportunity / update / simplification | [...] | [...] | integrate / experiment / defer / reject |
 
-## U-01 — [nome]
+## U-01 — [name]
 
-- **Fonte ed evidenza:** URL, revisione, licenza, file/simboli letti; fatto vs inferenza.
-- **Pertinenza:** chi ne beneficia, in quale fase/profilo; quando non serve.
-- **Cambiamento concreto:** file, istruzioni, skill, dipendenze o tool interessati.
-- **Compatibilità:** requisiti runtime, sovrapposizioni, personalizzazioni da preservare.
-- **Beneficio atteso:** ipotesi e limiti; nessun benchmark inventato.
-- **Costo ed effetti:** tempo, chiamate, dati, permessi e manutenzione aggiuntiva.
-- **Esperimento:** baseline, casi, criteri di successo e verifica richiesta prima dell'attivazione.
-- **Ripristino:** stato precedente recuperabile e limiti degli effetti esterni.
-- **Decisione:** da scegliere / scelta dell'utente con riferimento; non approvare da soli.
+- **Source and evidence:** URL, revision, license, files/symbols read; facts versus inferences.
+- **Relevance:** who benefits, at which stage/profile; when it is unnecessary.
+- **Concrete change:** affected files, instructions, skills, dependencies, or tools.
+- **Compatibility:** runtime requirements, overlaps, customizations to preserve.
+- **Expected benefit:** hypothesis and limitations; no invented benchmarks.
+- **Cost and effects:** time, calls, data, permissions, and additional maintenance.
+- **Experiment:** baseline, cases, success criteria, and verification required before activation.
+- **Recovery:** recoverable prior state and limitations of external effects.
+- **Decision:** pending / user's choice with reference; do not approve it yourself.
 
-## Dopo l'applicazione autorizzata
+## After authorized application
 
-ID applicati, diff/commit, versioni e hash, comandi/prove realmente eseguiti,
-risultati e limiti; impatto sulle copie nei progetti. Se non applicato, lasciare questa
-sezione come non eseguita; la presenza di un report non equivale all'adozione.
+Applied IDs, diff/commit, versions and hashes, commands/tests actually run, results and limitations,
+and impact on project copies. If not applied, mark this section as not executed;
+a report does not constitute adoption.

@@ -1,10 +1,10 @@
-# Registro durevole
+# Durable progress log
 
-Bootstrap importato; nessuna feature implementata o verifica applicativa eseguita.
+Bootstrap imported; no feature implemented or application verification performed.
 
-| Slice/task | Stato | Commit/diff | Evidenze | Limiti / prossimo passo |
+| Slice/task | Status | Commit/diff | Evidence | Limitations / next step |
 | --- | --- | --- | --- | --- |
-| Setup | Da completare | — | — | Seguire docs/development/START-HERE.md |
+| Setup | Pending | — | — | Follow docs/development/START-HERE.md |
 
-Prima di riprendere controllare lo stato Git e le prove collegate. Aggiornare questo registro
-alla fine di ogni slice e prima di un handoff. I log temporanei non sostituiscono questa sintesi.
+Before resuming, inspect Git status and linked evidence. Update this log at the end of each
+slice and before a handoff. Temporary logs do not replace this summary.

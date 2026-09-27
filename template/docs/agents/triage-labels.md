@@ -1,5 +1,5 @@
-# Etichette locali
+# Local labels
 
-needs-triage: da esaminare; needs-info: decisione mancante; ready-for-agent: implementabile
-nel perimetro concordato; ready-for-human: richiede intervento umano; wontfix: escluso con motivazione.
-Non sono etichette create su un servizio esterno. La skill triage non è inclusa nel subset.
+needs-triage: needs inspection; needs-info: missing decision; ready-for-agent: implementable
+within agreed scope; ready-for-human: requires human action; wontfix: excluded with a reason.
+These labels are not created in an external service. The triage skill is not included in this subset.

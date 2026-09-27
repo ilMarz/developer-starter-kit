@@ -1,29 +1,29 @@
 # [Feature] Implementation Plan
 
-Spec: [percorso]. Slice: [ID]. Goal: [comportamento]. Stato: proposta | approvato.
-Esecuzione: skill locale subagent-driven-development, oppure diretta se concordata.
+Spec: [path]. Slice: [ID]. Goal: [behavior]. Status: proposed | approved.
+Execution: local subagent-driven-development skill, or direct if agreed.
 
 ## Global Constraints
-[Criteri immutabili, scope, permessi, stack verificato, budget, modelli.]
+[Fixed criteria, scope, permissions, verified stack, budgets, models.]
 
-## Interfacce e dipendenze
-[Quale task produce cosa; quali task lo consumano.]
+## Interfaces and dependencies
+[What each task produces and which tasks consume it.]
 
-## Controllo coerenza
-| Task o coppia | Interfaccia/file condiviso | Coerenza / decisione |
+## Consistency check
+| Task or pair | Shared interface/file | Consistency / decision |
 | --- | --- | --- |
 | Task 1 | [...] | [...] |
 
-### Task 1: [Deliverable autonomamente verificabile]
+### Task 1: [Independently verifiable deliverable]
 
-**Files:** [percorsi effettivi dopo ispezione].
-**Requirements:** [AC referenziati, valori e invarianti concordati].
-**Dependencies:** [nessuna / task precedente].
+**Files:** [actual paths after inspection].
+**Requirements:** [referenced ACs, agreed values and invariants].
+**Dependencies:** [none / preceding task].
 
-- [ ] Preparare il caso e osservarne il fallimento quando pertinente.
-- [ ] Implementare il comportamento minimo richiesto.
-- [ ] Eseguire [comando] e verificare [risultato atteso indipendente].
-- [ ] Registrare BASE/HEAD, prove, limiti e review.
+- [ ] Prepare the case and observe its failure where relevant.
+- [ ] Implement the minimum required behavior.
+- [ ] Run [command] and verify [independent expected outcome].
+- [ ] Record BASE/HEAD, evidence, limitations, and review.
 
-## Verifica integrata finale
-[Originale, casi distinti, regressioni, build e verifiche live richieste.]
+## Final integrated verification
+[Original case, distinct cases, regressions, build, and required live checks.]

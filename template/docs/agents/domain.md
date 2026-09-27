@@ -1,7 +1,7 @@
-# Documentazione di dominio
+# Domain documentation
 
-Un solo contesto iniziale: `CONTEXT.md` contiene il glossario; `docs/adr/` le decisioni.
-Leggere termini e ADR pertinenti al lavoro; non tutto il corpus per ogni modifica.
-Creare ADR solo per scelte significative con alternative e conseguenze, non per ogni commit.
-Conservare quelli superati indicando quale documento li sostituisce.
-Un progetto già strutturato mantiene i suoi percorsi: integrare questa convenzione, non duplicarla.
+Start with one context: `CONTEXT.md` holds the glossary; `docs/adr/` holds decisions.
+Read terms and ADRs relevant to the task, rather than the entire corpus for every change.
+Create ADRs for significant choices with alternatives and consequences, not for every commit.
+Preserve superseded ADRs and identify their replacements.
+An established project keeps its paths: integrate this convention rather than duplicating it.

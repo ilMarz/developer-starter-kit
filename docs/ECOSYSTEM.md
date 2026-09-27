@@ -1,57 +1,54 @@
-# Confronto con kit pubblici
+# Comparison with public development kits
 
-Ricerca del **27 settembre 2026**. Scopo: individuare pratiche riutilizzabili per questo
-starter, mantenendo Matt Pocock per specifiche, slice, TDD e debugging, Superpowers
-locale per esecuzione isolata/review e il bootstrap conservativo del kit.
-Non è una classifica di efficacia: stelle e attività mostrano diffusione e manutenzione,
-non correttezza, sicurezza o produttività misurata.
+Research dated **September 27, 2026**. Goal: identify reusable practices for this starter while
+retaining Matt Pocock for specifications, slices, TDD, and debugging; local Superpowers for
+isolated execution/review; and the kit's conservative bootstrap.
+This is not an effectiveness ranking: stars and activity indicate adoption and maintenance,
+not measured correctness, safety, or productivity.
 
-## Snapshot verificata
+## Verified snapshot
 
-Metadati letti dalle API GitHub: `GET /repos/{owner}/{repo}` e
-`GET /repos/{owner}/{repo}/commits/{default_branch}`. Le date sono quelle del committer
-del commit in testa al branch predefinito, in UTC; non sono date di release.
-Conteggi mutevoli, osservati durante questa ricerca. I link ai commit fissano il codice;
-i link API restano dinamici.
+Metadata was read from GitHub APIs: `GET /repos/{owner}/{repo}` and
+`GET /repos/{owner}/{repo}/commits/{default_branch}`. Dates are committer timestamps for the
+head commit of the default branch, in UTC; they are not release dates.
+Counts are mutable observations from this research. Commit links pin code; API links remain dynamic.
 
-| Repository / API primaria | Stelle | Licenza verificata | Ultimo commit osservato | Stato |
+| Repository / primary API | Stars | Verified license | Latest observed commit | Status |
 | --- | ---: | --- | --- | --- |
-| [github/spec-kit](https://api.github.com/repos/github/spec-kit) | 139.060 | MIT | [c00dc055](https://github.com/github/spec-kit/commit/c00dc0551583428a10a94443c58c6a41e5e0138c), 25 settembre 2026 | Non archiviato |
-| [bmad-code-org/BMAD-METHOD](https://api.github.com/repos/bmad-code-org/BMAD-METHOD) | 53.535 | MIT con avviso separato sui marchi¹ | [5e33d3c0](https://github.com/bmad-code-org/BMAD-METHOD/commit/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb), 25 settembre 2026 | Non archiviato |
-| [gsd-build/get-shit-done](https://api.github.com/repos/gsd-build/get-shit-done) | 64.450 | MIT (API) | [bdcaab2c](https://github.com/gsd-build/get-shit-done/commit/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815), 31 maggio 2026 | **Archiviato**, README rimanda a GSD Core |
-| [open-gsd/gsd-core](https://api.github.com/repos/open-gsd/gsd-core) | 9.893 | MIT | [84ed9b84](https://github.com/open-gsd/gsd-core/commit/84ed9b843d9c383e46144931328676fef929a34c), 27 settembre 2026 | Successore indicato, non archiviato |
-| [buildermethods/agent-os](https://api.github.com/repos/buildermethods/agent-os) | 5.452 | MIT (API) | [475b0cac](https://github.com/buildermethods/agent-os/commit/475b0cac4c7c5cf2336ad5a663b691a6d3415e05), 29 agosto 2026 | Non archiviato |
+| [github/spec-kit](https://api.github.com/repos/github/spec-kit) | 139,060 | MIT | [c00dc055](https://github.com/github/spec-kit/commit/c00dc0551583428a10a94443c58c6a41e5e0138c), September 25, 2026 | Not archived |
+| [bmad-code-org/BMAD-METHOD](https://api.github.com/repos/bmad-code-org/BMAD-METHOD) | 53,535 | MIT with a separate trademark notice¹ | [5e33d3c0](https://github.com/bmad-code-org/BMAD-METHOD/commit/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb), September 25, 2026 | Not archived |
+| [gsd-build/get-shit-done](https://api.github.com/repos/gsd-build/get-shit-done) | 64,450 | MIT (API) | [bdcaab2c](https://github.com/gsd-build/get-shit-done/commit/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815), May 31, 2026 | **Archived**; README points to GSD Core |
+| [open-gsd/gsd-core](https://api.github.com/repos/open-gsd/gsd-core) | 9,893 | MIT | [84ed9b84](https://github.com/open-gsd/gsd-core/commit/84ed9b843d9c383e46144931328676fef929a34c), September 27, 2026 | Referenced successor; not archived |
+| [buildermethods/agent-os](https://api.github.com/repos/buildermethods/agent-os) | 5,452 | MIT (API) | [475b0cac](https://github.com/buildermethods/agent-os/commit/475b0cac4c7c5cf2336ad5a663b691a6d3415e05), August 29, 2026 | Not archived |
 
-¹ L'API BMAD restituisce `NOASSERTION`; il [testo LICENSE letto](https://github.com/bmad-code-org/BMAD-METHOD/blob/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb/LICENSE)
-contiene MIT e un avviso sui marchi. Non dedurre la licenza solo dal badge o dal campo API.
+¹ BMAD's API returns `NOASSERTION`; the [inspected LICENSE](https://github.com/bmad-code-org/BMAD-METHOD/blob/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb/LICENSE)
+contains MIT terms and a trademark notice. Do not infer licensing solely from badges or API fields.
 
-## Cosa offrono e cosa selezionare
+## Capabilities and practices to select
 
-Le capacità sotto sono documentate nelle fonti, non provate eseguendo i framework.
-Conflitti e scelte di adozione sono valutazioni nostre.
+The capabilities below are documented in the sources, not tested by running the frameworks.
+Overlap and adoption assessments are our own judgments.
 
-| Sistema | Evidenza e punto forte | Cosa adottare nel kit | Sovrapposizione da evitare |
+| System | Evidence and strength | Practice to adopt | Overlap to avoid |
 | --- | --- | --- | --- |
-| **Spec Kit** | Distingue specifica, piano, task e convergenza; offre anche percorsi separati per bug e valutazione di idee. L'analisi confronta requisiti, piano e task, cercando ambiguità, incoerenze e buchi di copertura. [README](https://github.com/github/spec-kit/blob/c00dc0551583428a10a94443c58c6a41e5e0138c/README.md), [analyze](https://github.com/github/spec-kit/blob/c00dc0551583428a10a94443c58c6a41e5e0138c/templates/commands/analyze.md) | Una verifica esplicita requisito → slice/task → evidenza prima della chiusura; distinguere copertura documentale da comportamento verificato. | Installare l'intero sistema aggiungerebbe un secondo router, artefatti e ciclo di implementazione sopra Matt + Superpowers. La sua “constitution” non deve diventare una seconda autorità concorrente con AGENTS e criteri approvati. |
-| **BMAD Method** | Pianificazione proporzionata: modifica piccola, sessione Build, epic o progetto. Documenti di prodotto e architettura servono quando occorre coordinare più parti; le unità implementate vanno verificate insieme. [README](https://github.com/bmad-code-org/BMAD-METHOD/blob/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb/README.md), [planning path](https://github.com/bmad-code-org/BMAD-METHOD/blob/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb/docs/plan/choose-a-planning-path.md) | Attivare ruoli e documenti solo per una lacuna concreta; aggiungere un controllo integrato alla fine di più slice. | Un PRD completo e molti ruoli per ogni fix costerebbero contesto e interazioni senza beneficio dimostrato. Il suo backlog e loop duplicano quelli del kit. |
-| **GSD / GSD Core** | Il [vecchio README](https://github.com/gsd-build/get-shit-done/blob/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815/README.md) rimanda a `open-gsd/gsd-core`. Il [README del successore](https://github.com/open-gsd/gsd-core/blob/84ed9b843d9c383e46144931328676fef929a34c/README.md) descrive fasi Discuss/Plan/Execute/Verify/Ship, contesti separati e stato durevole (`STATE.md`, `CONTEXT.md`). | Brief compatti per esecutore/reviewer e ripresa da stato ed evidenze, già coerenti con l'impostazione locale. Misurare la qualità della ripresa. | Non sommare il suo orchestratore e le sue ondate parallele a SDD locale. Le dimensioni di contesto dichiarate nel README non garantiscono quelle del runtime disponibile. Il README richiede l'installer per adattare i runtime: copiare singoli comandi non certifica compatibilità. |
-| **Agent OS** | Estrae convenzioni specifiche dal codice, le documenta in modo breve e carica quelle pertinenti tramite indice. [README](https://github.com/buildermethods/agent-os/blob/475b0cac4c7c5cf2336ad5a663b691a6d3415e05/README.md), [discover-standards](https://github.com/buildermethods/agent-os/blob/475b0cac4c7c5cf2336ad5a663b691a6d3415e05/commands/agent-os/discover-standards.md), [inject-standards](https://github.com/buildermethods/agent-os/blob/475b0cac4c7c5cf2336ad5a663b691a6d3415e05/commands/agent-os/inject-standards.md) | Un indice leggero delle convenzioni osservate, con origine nel codice, motivazione ed eccezioni. Caricamento per pertinenza. | Non trasformare ogni pattern esistente in regola obbligatoria. I comandi letti assumono `AskUserQuestion` e percorsi specifici: non sono skill Codex portabili senza adattamento. Evitare un secondo archivio di standard parallelo ad ADR e contesto del progetto. |
+| **Spec Kit** | Separates specification, plan, tasks, and convergence; also offers bug and idea-evaluation paths. Analysis compares requirements, plan, and tasks for ambiguity, inconsistencies, and coverage gaps. [README](https://github.com/github/spec-kit/blob/c00dc0551583428a10a94443c58c6a41e5e0138c/README.md), [analyze](https://github.com/github/spec-kit/blob/c00dc0551583428a10a94443c58c6a41e5e0138c/templates/commands/analyze.md) | Explicit requirement → slice/task → evidence checks before completion; distinguish documentary coverage from verified behavior. | Installing the whole system adds a second router, artifacts, and implementation cycle over Matt + Superpowers. Its constitution should not become a competing authority alongside AGENTS and approved criteria. |
+| **BMAD Method** | Proportionate planning: small change, Build session, epic, or project. Product/architecture documents help coordinate multiple parts; implemented units need joint verification. [README](https://github.com/bmad-code-org/BMAD-METHOD/blob/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb/README.md), [planning path](https://github.com/bmad-code-org/BMAD-METHOD/blob/5e33d3c03ba53187a40ab679d5479cdd4b6ac2fb/docs/plan/choose-a-planning-path.md) | Activate roles/documents for a concrete gap; add integrated verification after multiple slices. | A full PRD and many roles for every fix consume context and interactions without demonstrated benefit. Its backlog and loop duplicate the kit's. |
+| **GSD / GSD Core** | The [old README](https://github.com/gsd-build/get-shit-done/blob/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815/README.md) points to `open-gsd/gsd-core`. The [successor README](https://github.com/open-gsd/gsd-core/blob/84ed9b843d9c383e46144931328676fef929a34c/README.md) describes Discuss/Plan/Execute/Verify/Ship phases, separate contexts, and durable state (`STATE.md`, `CONTEXT.md`). | Compact implementer/reviewer briefs and resuming from state/evidence, consistent with the local approach. Measure resume quality. | Do not layer its orchestrator and parallel waves onto local SDD. README context-size claims do not guarantee the available runtime's capacity. Runtime adaptation requires its installer; copying individual commands does not certify compatibility. |
+| **Agent OS** | Extracts code-specific conventions, documents them briefly, and loads relevant ones through an index. [README](https://github.com/buildermethods/agent-os/blob/475b0cac4c7c5cf2336ad5a663b691a6d3415e05/README.md), [discover-standards](https://github.com/buildermethods/agent-os/blob/475b0cac4c7c5cf2336ad5a663b691a6d3415e05/commands/agent-os/discover-standards.md), [inject-standards](https://github.com/buildermethods/agent-os/blob/475b0cac4c7c5cf2336ad5a663b691a6d3415e05/commands/agent-os/inject-standards.md) | Lightweight index of observed conventions, code origins, rationale, and exceptions; load by relevance. | Do not make every existing pattern mandatory. Inspected commands assume `AskUserQuestion` and specific paths; they are not portable Codex skills without adaptation. Avoid another standards store duplicating project ADRs/context. |
 
-## Decisione per questo starter
+## Decision for this starter
 
-Conservare **un solo workflow di ingresso**. Questi sistemi sono alternative complete o
-fonti di pratiche, non dipendenze da impilare. Preferire tre miglioramenti circoscritti:
+Keep **one workflow entry point**. These systems are complete alternatives or sources of practices,
+not dependencies to stack. Prefer three bounded improvements:
 
-1. Controllare la coerenza tra requisiti, slice e prove, ispirandosi a Spec Kit.
-2. Dimensionare il processo al rischio e verificare l'integrazione fra slice, come suggerisce BMAD.
-3. Mantenere contesto breve, durevole e selettivo, prendendo spunto da GSD e Agent OS.
+1. Check consistency between requirements, slices, and evidence, inspired by Spec Kit.
+2. Size the process to risk and verify integration across slices, as suggested by BMAD.
+3. Keep context short, durable, and selective, drawing on GSD and Agent OS.
 
-Sono raccomandazioni, non dichiarazioni di funzionalità già implementate. Un'eventuale
-importazione di codice o testo richiede snapshot, licenza, diff e prove come le altre
-dipendenze del kit. In questa ricerca non sono stati installati né eseguiti framework,
-installer, hook o istruzioni contenute nelle fonti.
+These are recommendations, not claims of implemented capabilities. Importing code or text requires
+snapshots, licenses, diffs, and verification like other kit dependencies. This research did not
+install or execute frameworks, installers, hooks, or instructions found in sources.
 
-Per decidere se una pratica migliora davvero il kit, confrontare il workflow attuale e
-quello modificato su modifica piccola, feature con più slice, bug e ripresa di sessione:
-stessi criteri, difetti sfuggiti, interventi richiesti, tempo/costo e integrità del repository.
-Non selezionare un framework in base al solo numero di stelle.
+To determine whether a practice improves the kit, compare current and modified workflows on a small
+change, a multislice feature, a bug, and session recovery: same criteria, missed defects, required
+interventions, time/cost, and repository integrity. Do not choose a framework solely by star count.

@@ -1,13 +1,13 @@
-# Manutenzione del Developer Starter Kit
+# Developer Starter Kit maintenance
 
-Questa directory è un artefatto autonomo e generalista. Mantieni separati i dati e le regole dei progetti che lo adottano.
-Il materiale importato nei progetti è in `template/` e `skills/`; il resto serve a mantenere il kit.
-Non modificare snapshot vendor senza registrare esplicitamente provenienza e diff.
-Esegui `python3 tools/verify.py` e `python3 -m unittest discover -s tests -v` dopo modifiche
-al bootstrap. Testare in directory temporanee esterne al kit, mai su progetti dell'utente.
-I test degli script non dimostrano efficacia delle skill: usare anche `evals/scenarios.md`.
-Preserva i file dei progetti esistenti; nessun aggiornamento silenzioso o modifica globale.
+This directory is a standalone, general-purpose artifact. Keep adopting projects' data and rules separate.
+Project imports come from `template/` and `skills/`; the remaining files maintain the kit.
+Do not change vendor snapshots without explicitly recording provenance and the diff.
+After bootstrap changes, run `python3 tools/verify.py` and
+`python3 -m unittest discover -s tests -v`. Test in temporary directories outside the kit,
+never in user projects. Script tests do not prove skill effectiveness; also use `evals/scenarios.md`.
+Preserve existing project files; do not perform silent updates or global changes.
 
-Per ricercare novità e aggiornare questo kit usa `skills/update-devkit/SKILL.md`.
-Il percorso di discovery `.agents/skills/update-devkit` punta alla stessa skill.
-La modalità predefinita produce proposte motivate, comprese opportunità fuori dall'inventario.
+To discover improvements and update this kit, use `skills/update-devkit/SKILL.md`.
+The discovery path `.agents/skills/update-devkit` points to the same skill.
+The default mode produces evidence-based proposals, including opportunities outside the inventory.

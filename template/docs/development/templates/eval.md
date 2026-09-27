@@ -1,19 +1,19 @@
-# Eval: [capacità]
+# Eval: [capability]
 
-Oggetto: prodotto AI | workflow di sviluppo | singola skill.
-Versioni: [codice, prompt/skill, modello, tool, dataset, ambiente].
+Subject: AI product | development workflow | individual skill.
+Versions: [code, prompt/skill, model, tools, dataset, environment].
 
-## Casi
-[Positivi, negativi, incompleti, avversariali. Separare sviluppo, calibrazione e test.]
+## Cases
+[Positive, negative, incomplete, adversarial. Separate development, calibration, and test sets.]
 
-## Oracle e risultato
-[Risultato atteso indipendente, stato reale da osservare, rubriche, grader e revisione umana.]
+## Oracle and outcome
+[Independent expected outcome, actual state to observe, rubrics, graders, and human review.]
 
-## Protocollo
-[Baseline, numero di prove, seed quando supportato, timeout, budget e criteri di successo.]
+## Protocol
+[Baseline, number of trials, seed where supported, timeout, budget, and success criteria.]
 
-## Misure
-[Pass/fail/non valutabile/errori, falsi pass, costo totale e latenza; denominatori espliciti.]
+## Measurements
+[Pass/fail/not-evaluable/errors, false passes, total cost, and latency; explicit denominators.]
 
-## Risultati osservati e limiti
-[Nessun pass assegnato prima dell'esecuzione. Collegare artefatti redatti.]
+## Observed results and limitations
+[Do not assign a pass before execution. Link redacted artifacts.]

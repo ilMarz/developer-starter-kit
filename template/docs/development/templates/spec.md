@@ -1,24 +1,24 @@
-# Specifica: [feature]
+# Specification: [feature]
 
-Stato: proposta | approvata. Fonte/approvazione: [riferimento e data].
+Status: proposed | approved. Source/approval: [reference and date].
 
-## Problema e risultato atteso
-[Utente, bisogno, esempio concreto prima/dopo.]
+## Problem and expected outcome
+[User, need, concrete before/after example.]
 
-## Scope e fuori scope
-[Comportamenti richiesti e confini.]
+## Scope and exclusions
+[Required behavior and boundaries.]
 
-## Criteri di accettazione
-| ID | Input/precondizioni | Risultato osservabile | Verifica indipendente |
+## Acceptance criteria
+| ID | Input/preconditions | Observable outcome | Independent verification |
 | --- | --- | --- | --- |
-| AC-01 | [caso normale] | [...] | [...] |
-| AC-02 | [caso negativo] | [...] | [...] |
+| AC-01 | [normal case] | [...] | [...] |
+| AC-02 | [negative case] | [...] | [...] |
 
-## Decisioni e dipendenze
-[Scelte concordate, ADR, contratti, migrazioni. Distinguere proposte.]
+## Decisions and dependencies
+[Agreed choices, ADRs, contracts, migrations. Distinguish proposals.]
 
-## Superfici di test concordate
-[Interfacce pubbliche, prove live/mock, regressioni e limiti.]
+## Agreed test surfaces
+[Public interfaces, live/mock tests, regressions, and limitations.]
 
-## Questioni aperte
-[Decisione, responsabile e cosa blocca. Nessun requisito inventato.]
+## Open questions
+[Decision, owner, and what it blocks. Do not invent requirements.]

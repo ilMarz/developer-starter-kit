@@ -1,72 +1,66 @@
-# Scheda di lavoro e subset scelto dall'utente
+# Working agreement and user-selected subset
 
-Prima della prima implementazione o modifica sostanziale di un incarico, mostra
-una proposta breve del metodo che intendi usare. È una scelta di lavoro, non
-un'autorizzazione a effetti esterni. Durante preparazione e ricerca puoi leggere
-codice, verificare fatti e preparare la proposta senza modificare il prodotto.
+Before the first implementation or substantial change in a task, present a short proposal for
+the approach you intend to use. This selects a working method; it does not authorize external effects.
+During preparation and research, you may read code, verify facts, and prepare the proposal without
+changing the product.
 
-## Scheda suggerita
+## Suggested working agreement
 
-> **Obiettivo:** aggiungere i codici sconto al checkout.
-> **Skill:** to-spec per i criteri ancora da chiarire; tdd per i test; requesting-code-review
-> per una review separata. Nessuna intervista completa se la specifica è già approvata.
-> **Convenzioni:** una slice verificabile; ADR solo se emerge una decisione significativa;
-> aggiornamento del registro.
-> **Tool:** lettura/ricerca file, terminale, Git e test runner esistente; browser solo se
-> disponibile e necessario per verificare il checkout.
-> **Esecuzione:** propongo loop limitato a implementazione, prove e correzioni con budget
-> da concordare; un implementatore e un reviewer se autorizzi subagenti.
-> **Modelli:** modello corrente oppure gli ID disponibili che propongo per ciascun ruolo.
-> **Scelta:** procediamo così, modifichi il subset oppure preferisci implementazione diretta?
+> **Objective:** add discount codes to checkout.
+> **Skills:** to-spec for unresolved criteria; tdd for tests; requesting-code-review for a separate
+> review. No full interview if the specification is already approved.
+> **Conventions:** one verifiable slice; an ADR only if a significant decision arises; update the log.
+> **Tools:** file reading/search, terminal, Git, and the existing test runner; browser only if available
+> and needed to verify checkout.
+> **Execution:** a bounded implementation/test/fix loop with an agreed budget; one implementer and
+> one reviewer if subagents are authorized.
+> **Models:** the current model, or available IDs proposed for each role.
+> **Choice:** proceed with this approach, change the subset, or implement directly?
 
-Adatta la scheda al task: non è un elenco obbligatorio di strumenti da eseguire.
-Nomina soltanto tool e modelli disponibili verificati; per capacità mancanti indica
-la proposta come da configurare. Un'etichetta 'modello forte' non è una selezione effettiva.
+Adapt this to the task; it is not a mandatory list of tools to execute. Name only verified available
+tools and models; label missing capabilities as requiring configuration. 'Strong model' is a preference,
+not an actual model selection.
 
-## Come si sceglie
+## How to choose
 
-L'utente può rispondere in linguaggio naturale, senza editare JSON:
+The user can reply in natural language without editing JSON:
 
-- «Procedi così».
-- «Salta to-spec: i requisiti sono già nel ticket».
-- «Niente skill o subagenti, vai direttamente all'implementazione».
-- «Usa il loop, ma fermati dopo due tentativi di correzione».
-- «Usa [ID disponibile] per implementare e [altro ID] per la review».
-- «Niente browser; verifica dalla CLI».
-- «Questa volta non voglio ADR; conserva la motivazione nel report».
+- “Proceed with this approach.”
+- “Skip to-spec: the requirements are already in the ticket.”
+- “No skills or subagents; go directly to implementation.”
+- “Use the loop, but stop after two fix attempts.”
+- “Use [available ID] to implement and [another ID] for review.”
+- “No browser; verify from the CLI.”
+- “No ADR this time; keep the rationale in the report.”
 
-Se la richiesta iniziale contiene già le scelte e l'istruzione di procedere, riassumile
-brevemente e lavora. Non introdurre una nuova attesa di conferma. Se chiede solo una
-proposta, oppure non ha scelto come eseguire una modifica sostanziale, presenta la scheda
-e attendi la scelta prima delle modifiche dipendenti. Silenzio o tempo trascorso non sono
-un'accettazione. Per refusi e interventi minimi chiaramente richiesti basta una riga
-di metodo proporzionato e l'esecuzione, senza questionario.
+If the initial request already specifies choices and asks to proceed, briefly summarize them and work.
+Do not introduce another confirmation wait. If the user only requests a proposal, or has not selected
+an approach for a substantial change, present the agreement and wait for their choice before dependent
+changes. Silence or elapsed time is not acceptance. For explicitly requested typos and minimal edits,
+one line describing a proportionate approach followed by execution is enough; no questionnaire.
 
-## Persistenza e precedenza
+## Persistence and precedence
 
-Le preferenze di progetto stanno in `.devkit/workflow.json`; i ruoli/modelli in
-`.devkit/models.json`; i budget in `.devkit/loop.json`. I file iniziali sono proposte.
-Registra le scelte dell'incarico nel piano o nel registro prima di eseguirle. Aggiorna
-le preferenze permanenti solo se l'utente dice che valgono anche per gli incarichi futuri.
-Una scelta per 'questa volta' non cambia automaticamente il default del progetto.
+Project preferences live in `.devkit/workflow.json`, roles/models in `.devkit/models.json`, and budgets
+in `.devkit/loop.json`. Initial files are proposals. Record task choices in the plan or log before
+executing them. Update permanent preferences only when the user says they apply to future tasks too.
+A choice for 'this time' does not automatically change project defaults.
 
-La gerarchia operativa è: istruzioni del client e autorizzazioni applicabili, richiesta
-attuale dell'utente, preferenze già concordate, suggerimenti del kit. Il kit non può
-rendere obbligatoria una skill rifiutata dall'utente. Non riaprire la stessa scelta a
-ogni task, compaction o passaggio fra agenti; ricostruiscila dal registro.
+Operational precedence: client instructions and applicable authorization, the user's current request,
+previously agreed preferences, then kit suggestions. The kit cannot make a rejected skill mandatory.
+Do not reopen the same choice for every task, compaction, or agent handoff; recover it from the log.
 
-La disattivazione di una skill elimina quella procedura, non permette di inventare
-risultati. Se una scelta impedisce una verifica essenziale, spiega il limite e concorda
-un'alternativa; non indebolire autonomamente il criterio di accettazione.
-Senza loop, esegui il cambiamento e la verifica concordati e riporta l'esito; niente
-cicli aperti di correzione/escalation. Senza subagenti, dichiara la review diretta.
+Disabling a skill removes that procedure; it does not allow invented results. If a choice prevents
+essential verification, explain the limitation and agree on an alternative; do not weaken acceptance
+criteria yourself. Without a loop, perform the agreed change and verification and report the outcome;
+no open-ended correction/escalation cycles. Without subagents, disclose direct review.
 
-## Dipendenze e cambi di metodo
+## Dependencies and changes of approach
 
-Trasmetti ai subagenti anche esclusioni, modelli e budget. Un'istruzione vendor non
-riattiva skill o tool esclusi. Se un workflow dipende da una skill disabilitata,
-adattalo oppure proponi un'alternativa prima di eseguirlo.
-Chiedi una nuova scelta solo per cambiamenti materiali: modello non disponibile senza
-fallback concordato, nuovi effetti/tool, ampliamento dello scope o budget esaurito.
-Il JSON non blocca tecnicamente tool o spesa: i vincoli devono essere rispettati
-dall'agente e, quando necessario, configurati anche nel runtime.
+Pass exclusions, models, and budgets to subagents. Vendor instructions do not reactivate excluded
+skills or tools. If a workflow depends on a disabled skill, adapt it or propose an alternative first.
+Ask for a new choice only for material changes: an unavailable model without an agreed fallback,
+new effects/tools, scope expansion, or an exhausted budget.
+JSON does not technically block tools or spending; the agent must respect these constraints and,
+where necessary, configure them in the runtime too.

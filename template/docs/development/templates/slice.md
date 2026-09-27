@@ -1,17 +1,17 @@
-# NN: [Comportamento verificabile]
+# NN: [Verifiable behavior]
 
-Specifica: [link]. Stato: proposed | ready-for-agent | in-progress | in-review | done | blocked.
-Blocked by: [ID oppure none]. Piano operativo: [link quando necessario].
+Specification: [link]. Status: proposed | ready-for-agent | in-progress | in-review | done | blocked.
+Blocked by: [ID or none]. Execution plan: [link when needed].
 
 ## What to build
-[Un percorso completo attraverso i livelli necessari. Nessuna UI se il prodotto non la richiede.]
+[One complete path through the required layers. No UI unless the product needs one.]
 
 ## Acceptance criteria
-- [ ] AC-01: [risultato osservabile]
-- [ ] AC-02: [caso negativo]
+- [ ] AC-01: [observable outcome]
+- [ ] AC-02: [negative case]
 
-## Prove e autorizzazioni
-[Scenario, ambiente, scope, limiti, eventuale effetto reale autorizzato.]
+## Verification and authorization
+[Scenario, environment, scope, limits, and any authorized real-world effect.]
 
-## Consegna
-[Commit/diff, report delle prove, review, limiti.]
+## Delivery
+[Commit/diff, verification report, review, limitations.]

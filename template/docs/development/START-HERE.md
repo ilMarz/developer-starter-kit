@@ -1,43 +1,43 @@
-# Primo avvio
+# Getting started
 
-1. Controlla `.devkit/import.json`: eventuali `pending_manual_merges` richiedono integrazione
-   delle proposte in `.devkit/proposed/` con le istruzioni esistenti. Non sovrascriverle.
-2. Apri la cartella progetto in Codex. Usa `dev-workflow` locale. Se esistono omonime globali,
-   indica il percorso locale; il client potrebbe mostrare entrambe.
-3. Spiega obiettivo, utenti, esempi di risultato, vincoli e ciò che è escluso. Per un repository
-   esistente l'agente ispeziona prima implementazione, Git, istruzioni e test.
-4. Scegli stack e versioni sulla base del progetto; leggi `PROFILES.md` per il profilo scelto.
-   Crea manifest e lockfile adeguati e configura i comandi in `.devkit/project.json`.
-   Il bootstrap non ha installato runtime o dipendenze applicative.
-5. Se è un progetto nuovo, inizializza Git e registra una baseline quando il contenuto è pronto.
-   Controlla diff e segreti prima del commit. Non aggiungere remote o pubblicare senza incarico.
-6. Definisci criteri e prima slice, budget e limiti in `.devkit/loop.json`. Configura i ruoli
-   in `.devkit/models.json` dopo aver verificato i modelli disponibili nel client.
-7. Esegui la prima slice attraverso un comportamento reale, aggiungi i controlli necessari
-   a una CI adatta allo stack e registra l'esito in `docs/progress.md`.
+1. Check `.devkit/import.json`: any `pending_manual_merges` require merging proposals in
+   `.devkit/proposed/` with existing instructions. Do not overwrite them.
+2. Open the project directory in Codex. Use the local `dev-workflow`. If global copies share
+   its name, specify the local path; the client may show both.
+3. Explain the objective, users, example outcomes, constraints, and exclusions. For an existing
+   repository, the agent first inspects implementation, Git, instructions, and tests.
+4. Select the stack and versions based on the project; read `PROFILES.md` for your profile.
+   Create suitable manifests/lockfiles and configure commands in `.devkit/project.json`.
+   The bootstrap has not installed application runtimes or dependencies.
+5. For a new project, initialize Git and record a baseline when the content is ready.
+   Check the diff and secrets before committing. Do not add remotes or publish without authorization.
+6. Define criteria, the first slice, budgets, and limits in `.devkit/loop.json`. Configure roles
+   in `.devkit/models.json` after checking models available in the client.
+7. Execute the first slice through actual behavior, add necessary checks to stack-appropriate CI,
+   and record the result in `docs/progress.md`.
 
-Prima del codice l'agente presenta la scheda in `WORKING-AGREEMENT.md`: puoi cambiare
-skill, convenzioni, tool, loop, subagenti e modelli. Se hai già indicato cosa vuoi usare
-e chiesto di procedere, non serve una nuova conferma. Le scelte del singolo incarico
-non diventano automaticamente preferenze permanenti.
+Before coding, the agent presents the working agreement in `WORKING-AGREEMENT.md`: you can change
+skills, conventions, tools, loop, subagents, and models. If you already specified your choices
+and asked to proceed, no further confirmation is needed. Task-specific choices do not automatically
+become permanent preferences.
 
-La skill `setup-matt-pocock-skills` è inclusa per riconfigurare tracker e layout: il bootstrap
-ha già fornito i file locali minimi; non serve rifare il questionario se le convenzioni vanno bene.
+`setup-matt-pocock-skills` is included to reconfigure tracker and layout. The bootstrap already
+provides the minimal local files; no need to repeat the questionnaire if the conventions suit you.
 
-## Prompt pronti
+## Ready-to-use prompts
 
-**Progetto nuovo**
-> Usa $dev-workflow. Obiettivo: [...]. Vincoli: [...]. Risultato di riferimento: [...].
-> Prepara specifica, criteri e prima slice. Chiarisci solo le decisioni non ricavabili dal contesto.
+**New project**
+> Use $dev-workflow. Objective: [...]. Constraints: [...]. Reference outcome: [...].
+> Prepare the specification, criteria, and first slice. Clarify only decisions not inferable from context.
 
-**Implementazione autorizzata**
-> Implementa la slice [ID] usando $dev-workflow e subagenti. I criteri approvati sono in [file].
-> Usa i budget concordati e aggiorna prove e registro. Prosegui fino a completamento o stop motivato.
+**Authorized implementation**
+> Implement slice [ID] using $dev-workflow and subagents. Approved criteria are in [file].
+> Use the agreed budgets and update evidence and the log. Continue until completion or a justified stop.
 
-**Ripresa**
-> Riprendi da docs/progress.md. Controlla commit, diff e prove, recupera il piano e il ledger SDD
-> se presenti, poi continua il primo task incompleto senza ripetere quelli già verificati.
+**Resume**
+> Resume from docs/progress.md. Check commits, diffs, and evidence, recover the plan and SDD ledger
+> if present, then continue the first incomplete task without repeating verified work.
 
 **Bug**
-> Usa $dev-workflow e diagnosing-bugs. Questo input [...] produce [...] ma deve produrre [...].
-> Riproduci il caso, correggi entro [...] e verifica originale e regressioni.
+> Use $dev-workflow and diagnosing-bugs. Input [...] produces [...] but should produce [...].
+> Reproduce the case, fix within [...], and verify the original case and regressions.

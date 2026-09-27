@@ -1,20 +1,20 @@
 # Report: [slice/run]
 
-Data: [...]. Revisione: [...]. Spec/criteri: [...]. Ambiente: [...].
-Agente/ruolo e modello effettivo: [...]. Tool/client/versione: [...].
+Date: [...]. Revision: [...]. Spec/criteria: [...]. Environment: [...].
+Agent/role and actual model: [...]. Tool/client/version: [...].
 
-## Risultato
-[Verificato, candidato, bloccato o fallito.]
+## Outcome
+[Verified, candidate, blocked, or failed.]
 
-| Criterio | Comando/prova | Esito osservato | Evidenza redatta |
+| Criterion | Command/test | Observed outcome | Redacted evidence |
 | --- | --- | --- | --- |
 | AC-01 | [...] | [...] | [...] |
 
-## Modifiche e review
-[Commit/diff, finding, correzioni e decisioni motivate.]
+## Changes and review
+[Commits/diffs, findings, fixes, and reasoned decisions.]
 
-## Budget e limiti
-[Tempo, tentativi, costo noto o non misurabile; mock/live per dipendenza; prove non eseguite.]
+## Budget and limitations
+[Time, attempts, known or unmeasurable cost; mock/live by dependency; checks not run.]
 
-## Prossimo passo
-[Task, prerequisiti e destinazione autorizzata.]
+## Next step
+[Task, prerequisites, and authorized destination.]

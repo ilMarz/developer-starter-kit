@@ -21,10 +21,10 @@ def main():
                     changed.append(rel)
             print(json.dumps({'modified_or_missing': changed,
                               'pending_manual_merges_at_import': manifest['pending_manual_merges']}, indent=2))
-            print('Il drift può essere intenzionale; questo controllo non verifica la qualità del progetto.')
+            print('Drift may be intentional; this check does not verify project quality.')
             return 1 if changed else 0
         lock = verify_vendor()
-        print(f"Snapshot verificato: {sum(len(s['skills']) for s in lock['sources'])} skill vendor.")
+        print(f"Snapshot verified: {sum(len(s['skills']) for s in lock['sources'])} vendor skills.")
         return 0
     except (ValueError, OSError, KeyError, json.JSONDecodeError) as exc:
         print(str(exc), file=sys.stderr)

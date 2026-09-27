@@ -1,17 +1,23 @@
 # Changelog
 
-## 0.2.0 — 27 settembre 2026
+## 0.2.1 — September 27, 2026
 
-- Nuova skill `update-devkit`: ricerca delle novità oltre l'inventario corrente,
-  proposte motivate, applicazione degli ID selezionati e conservazione delle personalizzazioni.
-- Scheda di lavoro iniziale: subset di skill, convenzioni, tool, loop e modelli modificabile;
-  scelte già date riutilizzate, esclusioni trasmesse ai subagenti, percorso diretto disponibile.
-- Report con fonti, beneficio atteso, impatto, compatibilità ed esperimento.
-- Discovery nel repository tramite link relativo; copia normale nei nuovi progetti.
-- 17 skill totali: 15 vendor invariate, 2 originali. Hash vendor invariati.
-- Cartella autonoma e trasferibile, senza riferimenti a progetti specifici.
-- Nessuna tecnologia nuova adottata, nessun aggiornamento dei progetti già importati.
+- Translate all original documentation, templates, skills, and CLI messages into English.
+- Update cloning instructions for the public repository and document successful GitHub CI.
+- Preserve third-party snapshots and their hashes; command arguments and behavior are unchanged.
 
-## 0.1.0 — 27 settembre 2026
+## 0.2.0 — September 27, 2026
 
-Prima versione del bootstrap, template, 15 skill vendor e dev-workflow.
+- Add `update-devkit`: discover opportunities beyond the current inventory, produce evidence-based
+  proposals, apply selected IDs, and preserve customizations.
+- Add an initial working agreement with configurable skills, conventions, tools, loop, and models;
+  reuse existing choices, pass exclusions to subagents, and support direct implementation.
+- Reports include sources, expected benefit, impact, compatibility, and an experiment.
+- Repository discovery uses a relative link; new projects receive regular copies.
+- 17 skills total: 15 unchanged vendor skills and 2 original skills. Vendor hashes unchanged.
+- Standalone, portable directory without references to specific projects.
+- No new technology adopted; previously imported projects remain unchanged.
+
+## 0.1.0 — September 27, 2026
+
+Initial bootstrap, templates, 15 vendor skills, and dev-workflow.

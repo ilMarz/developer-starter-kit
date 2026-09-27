@@ -1,58 +1,57 @@
-# Metodo operativo
+# Development workflow
 
-## Scegliere la quantità di processo
+## Choose the right amount of process
 
-- Refuso/configurazione piccola e reversibile: diff mirato e verifica pertinente.
-- Bug: riproduzione, causa verificata, correzione, originale e regressione.
-- Feature con più passi: specifica, slice, piano operativo, implementazione e review.
-- Decisione costosa o controversa: analisi delle alternative e ADR. Non creare ADR per routine.
+- Typo/small reversible configuration change: focused diff and relevant verification.
+- Bug: reproduce, verify the cause, fix, and check the original case and regressions.
+- Multistep feature: specification, slices, execution plan, implementation, and review.
+- Costly or disputed decision: analyze alternatives and write an ADR. Do not create ADRs for routine work.
 
-## Dal problema al software
+## From problem to software
 
-1. **Comprendere**: fatti dal codice e fonti; domande sulle sole decisioni aperte. Distinguere
-   osservato, ipotizzato e proposto. Specifica con esempi, criteri negativi e fuori perimetro.
-2. **Scegliere le interfacce di verifica**: comportamento osservabile e risultati attesi
-   indipendenti dall'implementazione. Riutilizzare quelli già approvati.
-3. **Slice verticali**: ciascuna attraversa i livelli necessari a un comportamento dimostrabile.
-   Non costruire prima tutti i modelli, poi tutti i servizi, poi tutti i test.
-   Le grandi migrazioni possono usare expand → migrazione → contract, mantenendo compatibilità.
-4. **Piano**: derivare task dalle slice. Specifica = cosa e perché; piano = come e quali file.
-   Verificare conflitti di interfacce/dipendenze prima di assegnare task. Usare intestazioni
-   `### Task 1: ...` compatibili con task-brief SDD. Il template è in templates/plan.md.
-5. **Esecuzione**: ambiente controllato, baseline, test significativi, cambi piccoli,
-   loop definito in AGENTIC-LOOP.md. Niente subagenti obbligatori per lavoro minuscolo.
-6. **Review**: controllare conformità ai criteri, correttezza, regressioni, sicurezza pertinente,
-   migrazioni e operatività. Il reviewer deve poter contestare piano e implementazione con prove.
-7. **Consegna**: verifiche sul risultato finale, limiti espliciti, documenti aggiornati,
-   commit/diff e integrazione nella destinazione autorizzata. Nessun deploy implicito.
+1. **Understand**: gather facts from code and sources; ask only about open decisions. Distinguish
+   observations, hypotheses, and proposals. Specify examples, negative criteria, and exclusions.
+2. **Choose verification interfaces**: observable behavior and expected outcomes independent of the
+   implementation. Reuse approved interfaces.
+3. **Vertical slices**: each crosses the layers needed for demonstrable behavior. Do not build all
+   models first, then all services, then all tests. Large migrations may use expand → migrate → contract
+   while preserving compatibility.
+4. **Plan**: derive tasks from slices. Specification = what and why; plan = how and which files.
+   Check interface/dependency conflicts before assigning tasks. Use `### Task 1: ...` headings compatible
+   with SDD task-brief. The template is in templates/plan.md.
+5. **Execute**: controlled environment, baseline, meaningful tests, small changes, and the loop in
+   AGENTIC-LOOP.md. Subagents are not mandatory for tiny tasks.
+6. **Review**: check criteria, correctness, regressions, relevant security, migrations, and operations.
+   The reviewer must be able to challenge the plan and implementation with evidence.
+7. **Deliver**: verify the final result, disclose limitations, update documents, record commits/diffs,
+   and integrate into the authorized destination. No implicit deployment.
 
-## Coerenza e convenzioni osservate
+## Consistency and observed conventions
 
-Prima di iniziare e prima di chiudere una feature, confrontare criteri della specifica,
-slice/task e prove: ogni criterio richiesto deve avere una verifica identificabile; un
-documento che lo cita non dimostra che il comportamento funzioni. Verificare anche
-il percorso integrato quando più slice collaborano.
+Before starting and closing a feature, compare specification criteria, slices/tasks, and evidence:
+every required criterion needs identifiable verification. A document mentioning a criterion does not
+prove the behavior works. Also verify the integrated path when multiple slices work together.
 
-Nei progetti esistenti, registrare solo le convenzioni utili realmente osservate in un
-indice `docs/standards.md`: ambito, file/simbolo di origine, motivazione ed eccezioni.
-Crearlo quando emergono convenzioni da riusare, senza copiare interi manuali. Un pattern
-esistente può essere un debito tecnico: non promuoverlo automaticamente a regola.
+In existing projects, record only useful, actually observed conventions in a `docs/standards.md` index:
+scope, source file/symbol, rationale, and exceptions. Create it when reusable conventions emerge,
+without copying whole manuals. An existing pattern may be technical debt; do not automatically
+promote it to a rule.
 
 ## Definition of ready
 
-Obiettivo e criteri utilizzabili; dipendenze risolte o esplicite; superficie di test;
-ambiente e permessi; budget e modalità concordati. Un task bloccato non è pronto.
+Usable objective and criteria; resolved or explicit dependencies; test surface; environment and
+permissions; agreed budget and execution mode. A blocked task is not ready.
 
 ## Definition of done
 
-Comportamento richiesto osservato; casi originali, negativi e regressioni pertinenti;
-review affrontata; errori residui e verifiche mancanti espliciti; docs/ADR aggiornati se
-necessario; log senza segreti; destinazione e attivazione coerenti con le autorizzazioni.
-Una feature non è done se manca una prova essenziale. Può essere candidata con limite dichiarato.
+Required behavior observed; relevant original, negative, and regression cases checked; review
+addressed; residual errors and missing verification explicit; docs/ADRs updated where needed;
+logs free of secrets; destination and activation consistent with authorization.
+A feature missing essential verification is not done. It may remain a candidate with stated limitations.
 
-## Memoria e contesto
+## Memory and context
 
-`docs/progress.md` conserva sintesi e link a prove, commit e decisioni. Il ledger SDD
-in `.superpowers/sdd/` è scratch ignorato da Git: recupera il lavoro durante una sessione,
-ma non è archivio sufficiente. Prima di pulizia/handoff trasferire le evidenze utili redatte
-in `docs/reports/`. Non copiare transcript integrali o segreti nel repository.
+`docs/progress.md` preserves summaries and links to evidence, commits, and decisions. The SDD ledger
+in `.superpowers/sdd/` is Git-ignored scratch: useful for recovering work in a session, but insufficient
+as an archive. Before cleanup/handoff, move useful redacted evidence to `docs/reports/`.
+Do not copy full transcripts or secrets into the repository.

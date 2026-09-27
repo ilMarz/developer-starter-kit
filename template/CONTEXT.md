@@ -1,4 +1,4 @@
-# Glossario del progetto
+# Project glossary
 
-Nessun termine ancora concordato. Aggiungere solo termini di dominio risolti,
-con significato e relazioni. Specifiche e decisioni tecniche vivono nei documenti dedicati.
+No terms agreed yet. Add only resolved domain terms, their meanings, and relationships.
+Specifications and technical decisions belong in their dedicated documents.

@@ -1,35 +1,35 @@
-# Raccordi fra skill e client
+# Skill and client compatibility
 
-Le skill vendor sono conservate byte per byte. Queste sono convenzioni locali proposte
-per il progetto: non dichiarano che le skill upstream siano state riscritte e non possono
-superare istruzioni esplicite dell'utente o vincoli del client.
+Vendor skills are preserved byte for byte. These are proposed local project conventions;
+they do not claim to rewrite upstream skills and cannot override explicit user instructions
+or client constraints.
 
-| Differenza | Regola del kit |
+| Difference | Kit convention |
 | --- | --- |
-| Skill vendor prescrive un passaggio escluso dall'utente | Prevale il subset scelto; adattare la procedura o eseguire direttamente senza invocare skill escluse |
-| Matt usa ticket di comportamento; SDD vuole task e file | Derivare un piano esecutivo dai ticket, mantenere ID e criteri; non cambiare la specifica |
-| to-tickets usa .scratch di default | Usare il tracker configurato: docs/work, persistente e versionato |
-| SDD decide ambiguità; l'utente approva requisiti | Decidere dettagli reversibili nel perimetro; chiedere per criteri, compromessi e ampliamenti |
-| Conferme richieste più volte | Riutilizzare decisioni già date; chiedere solo su materiale nuovo non autorizzato |
-| Finishing richiede sempre un menu | Eseguire la destinazione già autorizzata; se manca, preparare risultato reviewabile e chiedere |
-| Cleanup SDD e worktree | Salvare prima sintesi/prove durevoli; usare strumenti nativi di archiviazione se presenti |
-| Richiami superpowers:skill e tool Skill | Risolvere il nome nel file locale .agents/skills; leggere la skill se il client non ha un loader |
-| executing-plans citata come alternativa | Non inclusa: usare percorso diretto coordinato del kit, dichiarando assenza di quella skill |
-| Matt TDD rinvia refactoring alla review | Usare red/green per il comportamento; refactoring motivato dopo la verifica, con test verdi |
-| Matt richiede accordo sulle interfacce di test | Riutilizzare accordo nella specifica; non bloccare per una conferma già registrata |
-| Review duplicata | Review per task SDD copre requisiti e qualità; review finale copre integrazione, non ripete inutilmente |
-| tdd rinvia alla skill Matt code-review | Quella skill non è inclusa: usare il reviewer di requesting-code-review/SDD per la stessa fase, senza dichiarare di averla eseguita |
-| Default modelli della skill | Verificare disponibilità; configurazione ruoli è preferenza, client decide cosa può eseguire |
-| Shell setup generici negli esempi | Usare manifest e lockfile reali; pyproject.toml non implica Poetry |
+| A vendor skill prescribes a step excluded by the user | The selected subset takes precedence; adapt the procedure or execute directly without invoking excluded skills |
+| Matt uses behavior tickets; SDD expects tasks and files | Derive an execution plan from tickets, preserving IDs and criteria; do not change the specification |
+| to-tickets defaults to .scratch | Use the configured tracker: persistent, versioned docs/work |
+| SDD resolves ambiguity; the user approves requirements | Decide reversible details within scope; ask about criteria, tradeoffs, and scope expansion |
+| Repeated confirmation requirements | Reuse existing decisions; ask only about new, unauthorized material matters |
+| Finishing always requires a menu | Carry out the already authorized destination; otherwise prepare a reviewable result and ask |
+| SDD and worktree cleanup | Save durable summaries/evidence first; use native archival tools when available |
+| superpowers:skill references and the Skill tool | Resolve the local name in .agents/skills; read the skill file if the client has no loader |
+| executing-plans mentioned as an alternative | Not included: use the kit's coordinated direct path and disclose the missing skill |
+| Matt TDD defers refactoring until review | Use red/green for behavior; perform justified refactoring after verification, keeping tests green |
+| Matt requires agreement on test interfaces | Reuse agreement in the specification; do not block on confirmation already recorded |
+| Duplicate review | SDD task review covers requirements and quality; final review covers integration without unnecessary repetition |
+| tdd references Matt's code-review skill | Not included: use the requesting-code-review/SDD reviewer for that stage, without claiming to have used the missing skill |
+| Skill model defaults | Check availability; role configuration expresses preferences, while the client determines what can run |
+| Generic shell setup examples | Use actual manifests and lockfiles; pyproject.toml does not imply Poetry |
 
-## Portabilità
+## Portability
 
-Il kit non installa plugin, MCP server, credenziali, hook, scheduler o runtime applicativi.
-Codex legge le skill locali; per altri client verificare discovery, permessi, tool e metadata.
-Se subagenti non disponibili, non fingere separazione: implementare direttamente e riportare
-che la review non è indipendente, oppure richiedere un reviewer umano per i rischi che lo esigono.
-Se tool nativi per worktree sono disponibili, usarli; Git manuale è fallback.
-Un worktree non è una sandbox di esecuzione. Bash/Git servono agli helper SDD.
+The kit does not install plugins, MCP servers, credentials, hooks, schedulers, or application runtimes.
+Codex reads local skills; for other clients, verify discovery, permissions, tools, and metadata.
+If subagents are unavailable, do not pretend contexts are separate: implement directly and disclose
+that review is not independent, or request a human reviewer when the risks require one.
+Use native worktree tools when available; manual Git is a fallback.
+A worktree is not an execution sandbox. SDD helpers require Bash and Git.
 
-Le copie omonime globali non sono eliminate. Specificare quelle del progetto quando si
-invocano skill; gestire eventuali disabilitazioni globali solo su richiesta dell'utente.
+Global skills with the same names are not removed. Specify project copies when invoking skills;
+disable global copies only when the user requests it.

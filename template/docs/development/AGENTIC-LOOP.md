@@ -1,69 +1,68 @@
-# Agentic loop e modelli per ruolo
+# Agentic loop and models by role
 
-Il kit descrive un ciclo eseguito dall'agente nel client. Non contiene un servizio che gira
-in background, un orchestratore API o un meccanismo tecnico per fermare una fattura.
+The kit describes a cycle carried out by the agent in its client. It does not include a
+background service, an API orchestrator, or a technical mechanism that caps a bill.
 
 ```text
-criteri approvati → slice pronta → piano/ambiente
- → implementazione → esecuzione osservata → review
- → [successo] report/integrazione autorizzata
- → [difetto correggibile + budget] diagnosi → patch → prove/regressioni → review mirata
- → [incertezza, budget o autorizzazione mancante] candidato + stop motivato
+approved criteria → ready slice → plan/environment
+ → implementation → observed execution → review
+ → [success] report/authorized integration
+ → [fixable defect + budget] diagnosis → patch → tests/regressions → focused review
+ → [uncertainty, budget, or missing authorization] candidate + explained stop
 ```
 
-## Condizioni operative
+## Operating conditions
 
-Prima dell'esecuzione concordare scope, criteri, comandi, budget di tempo/tentativi e
-costo se misurabile. Registrare autorizzazioni e destinazione. I valori in loop.json sono
-proposte iniziali da confermare per incarico, non limiti già approvati dall'utente.
-Il kit non incrementa budget e non cambia criteri per ottenere un pass.
+Before execution, agree on scope, criteria, commands, time/attempt budgets, and cost if measurable.
+Record authorization and destination. Values in loop.json are initial proposals to confirm per task,
+not budgets already approved by the user. Do not increase budgets or change criteria to obtain a pass.
 
-Ogni iterazione conserva ID slice/task, modello effettivo, commit/diff, comandi, exit code,
-evidenze, review, consumo noto e prossimo passo. Un errore del tool è un errore, non un pass.
-Dopo un'interruzione riconciliare lo stato prima di ripetere azioni con effetti.
+Each iteration records slice/task ID, actual model, commit/diff, commands, exit codes, evidence,
+review, known usage, and next step. A tool error is an error, not a pass.
+After an interruption, reconcile state before repeating actions with side effects.
 
-Stop: obiettivo verificato; budget esaurito; ripetizione senza nuova evidenza o miglioramento;
-criterio incoerente/ambiguo; capacità essenziale mancante; effetto non autorizzato.
-Il limite effettivo dei fix è il più restrittivo tra quello del progetto e quello della skill.
-Non avviare una nuova iterazione quando la stima supera il budget residuo. Se consumo non
-misurabile, dichiararlo e non promettere un tetto economico; concordare un limite alternativo
-prima di chiamate a pagamento. Impostare limiti tecnici presso il provider quando necessari.
+Stop when the objective is verified, the budget is exhausted, repetition produces no new evidence
+or improvement, a criterion is inconsistent/ambiguous, an essential capability is unavailable,
+or an effect is unauthorized. The effective fix limit is the stricter of the project and skill limits.
+Do not start another iteration if its estimate exceeds the remaining budget. If usage cannot be
+measured, disclose that limitation and do not promise a spending cap; agree on an alternative limit
+before paid calls. Configure technical limits with the provider when needed.
 
-## Ruoli e modelli
+## Roles and models
 
-`.devkit/models.json` contiene ruoli, ID opzionali e politica di fallback. Non è un file
-nativo di configurazione Codex. Il coordinatore lo legge e traduce nei tool disponibili.
+`.devkit/models.json` contains roles, optional IDs, and fallback policy. It is not a native Codex
+configuration file. The coordinator reads it and translates preferences into available tool calls.
 
-| Ruolo | Scelta di partenza | Quando usare più capacità |
+| Role | Starting preference | When to use more capability |
 | --- | --- | --- |
-| planner | Modello capace di ragionamento progettuale | Requisiti ambigui, architettura, compromessi |
-| implementer | Modello bilanciato | Integrazioni ampie e debugging difficile |
-| reviewer | Modello bilanciato o forte, contesto separato | Sicurezza, concorrenza, migrazioni, review finale |
-| debugger | Modello bilanciato | Ipotesi complesse e problemi intermittenti |
-| researcher | Modello rapido per recupero circoscritto | Sintesi tecnica con fonti in conflitto |
+| planner | Model capable of design reasoning | Ambiguous requirements, architecture, tradeoffs |
+| implementer | Balanced model | Broad integrations and difficult debugging |
+| reviewer | Balanced or strong model, separate context | Security, concurrency, migrations, final review |
+| debugger | Balanced model | Complex hypotheses and intermittent problems |
+| researcher | Fast model for bounded retrieval | Technical synthesis with conflicting sources |
 
-Prima del dispatch verificare gli ID esposti dal client; fissarli per l'incarico e registrarli.
-Modelli distinti per ruolo sono opzionali: due agenti con lo stesso modello possono comunque
-avere contesti separati. Un modello diverso non garantisce indipendenza degli errori.
-Nessun ID provider o nome 'latest' universale è incorporato nel kit.
+Before dispatch, verify IDs exposed by the client; select and record them for the task.
+Different models per role are optional: two agents using the same model can still have separate
+contexts. A different model does not guarantee independent errors.
+The kit embeds no universal provider ID or 'latest' model name.
 
-Nel client che offre selezione per subagente, passare esplicitamente modello e reasoning
-supportati. Con un modello già configurato dal client si può ereditarlo, ma va dichiarato:
-non scrivere che è stato usato un modello diverso. Un fallback non autorizzato richiede scelta.
-Il cambio del modello della chat principale può richiedere azione dell'utente nel client.
-Usare provider esterni richiede runtime, credenziali e policy dati configurati; la scelta in JSON
-non abilita da sola un altro provider e non autorizza invio di dati.
+If the client supports per-subagent selection, explicitly pass supported model and reasoning values.
+You may inherit the model already configured in the client, but disclose this rather than claiming
+a different model was used. An unauthorized fallback requires a decision.
+Changing the main chat's model may require user action in the client.
+External providers require runtime, credentials, and data policies; a JSON preference neither
+enables another provider nor authorizes sending data.
 
-## Coordinamento
+## Coordination
 
-Un implementatore alla volta nel checkout condiviso. Ricerca/review indipendenti possono
-procedere in parallelo quando il lavoro lo consente. Un brief include obiettivo, vincoli,
-file/interfacce, prove attese e output; non tutta la cronologia della chat.
-I limiti di concorrenza sono verificati nel client, non fissati universalmente dal kit.
-Il coordinatore mantiene il registro; i subagenti non si assegnano review aggiuntive.
+One implementer at a time in a shared checkout. Independent research/review may run in parallel
+when appropriate. A brief includes objective, constraints, files/interfaces, expected verification,
+and output rather than the entire chat history. Check concurrency limits in the client;
+the kit does not prescribe a universal limit. The coordinator maintains the log;
+subagents do not assign additional reviews to themselves.
 
-## Due loop diversi
+## Two different loops
 
-Questo è il loop di sviluppo del software. Se il prodotto contiene a sua volta agenti,
-il suo loop runtime richiede implementazione propria: stato persistente, autorizzazioni,
-strumenti, timeout/retry, osservabilità ed eval. Non confondere il kit con quelle funzionalità.
+This is the software development loop. If the product itself contains agents, its runtime loop
+needs its own implementation: persistent state, permissions, tools, timeouts/retries,
+observability, and evals. Do not confuse the kit with those product capabilities.

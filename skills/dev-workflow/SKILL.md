@@ -1,52 +1,51 @@
 ---
 name: dev-workflow
-description: Avvia o riprendi una feature, un bugfix o un progetto usando il developer starter kit locale, collegando specifica, slice, implementazione e prove.
+description: Start or resume a feature, bug fix, or project using the local developer starter kit, connecting specifications, slices, implementation, and evidence.
 ---
 
 # Developer workflow
 
-Leggi `AGENTS.md` applicabile e `docs/development/WORKFLOW.md` nel progetto.
-Se non esistono, spiega che il kit deve essere importato; non inventare configurazioni.
-Leggi `.devkit/project.json` per stato e comandi. La configurazione iniziale contiene
-valori null: non sono verifiche superate. Per il primo avvio segui START-HERE.md.
+Read applicable `AGENTS.md` instructions and the project's `docs/development/WORKFLOW.md`.
+If they are missing, explain that the kit needs importing; do not invent configuration.
+Read `.devkit/project.json` for status and commands. Initial null values are not passed checks.
+For first-time setup, follow START-HERE.md.
 
-Prima del primo cambiamento sostanziale segui la **scheda di lavoro** in
-`docs/development/WORKING-AGREEMENT.md`: presenta il subset suggerito di skill,
-convenzioni, tool, delega/loop e modelli effettivamente disponibili, poi lascia
-all'utente la scelta. Le indicazioni già date nell'incarico valgono come scelta:
-non chiedere una seconda approvazione. Una richiesta esplicita di andare direttamente
-al codice o di non usare una skill prevale sul percorso suggerito qui sotto.
-Leggi `.devkit/workflow.json` se presente, applicando prima gli override dell'utente
-per l'incarico. È una preferenza letta dall'agente, non un controllo del runtime.
+Before the first substantial change, follow the **working agreement** in
+`docs/development/WORKING-AGREEMENT.md`: present suggested skills, conventions, tools,
+delegation/loop, and actually available models, then let the user choose.
+Choices already provided in the task count; do not request approval twice.
+An explicit request to go directly to code or exclude a skill overrides the suggested path below.
+Read `.devkit/workflow.json` when present, applying the user's task overrides first.
+These are agent-read preferences, not runtime controls.
 
-Suggerisci il percorso proporzionato alla richiesta, poi usa solo il subset scelto:
+Suggest an approach proportionate to the request, then use only the selected subset:
 
-- Nuova feature con ambiguità: `grill-with-docs` solo sui punti aperti, poi `to-spec`.
-- Specifica già approvata: riprendi quella; `to-tickets` se servono incrementi distinti.
-- Slice pronta: piano operativo con `writing-plans` quando l'implementazione ha più passi;
-  `using-git-worktrees` secondo il contesto e `subagent-driven-development` se la delega è disponibile e autorizzata.
-- Bug: `diagnosing-bugs`, riproduzione osservata, correzione e regressione pertinente.
-- Modifica piccola e chiara: esegui direttamente con verifica proporzionata.
+- Ambiguous new feature: `grill-with-docs` for open points only, then `to-spec`.
+- Approved specification: reuse it; use `to-tickets` if distinct increments are needed.
+- Ready slice: execution plan with `writing-plans` for multistep implementation;
+  `using-git-worktrees` as appropriate and `subagent-driven-development` if delegation is available and authorized.
+- Bug: `diagnosing-bugs`, observed reproduction, fix, and relevant regression verification.
+- Small, clear change: execute directly with proportionate verification.
 
-Per test-first usa `tdd`; per decisioni sulle interfacce usa `codebase-design`.
-Suggerisci review, `verification-before-completion` e, quando serve integrazione Git,
-`finishing-a-development-branch`. L'utente può scegliere una verifica diretta senza
-queste skill; riporta comunque cosa è stato verificato. Non duplicare le review SDD.
-Non invocare indirettamente una skill esclusa tramite un'altra: segnala la dipendenza
-e adatta il percorso. Esempio: senza `grilling`, chiarisci soltanto le ambiguità essenziali;
-senza subagenti, non avviare SDD fingendo una review indipendente.
+For test-first development, use `tdd`; for interface decisions, use `codebase-design`.
+Suggest review, `verification-before-completion`, and `finishing-a-development-branch` when Git
+integration is needed. The user may choose direct verification without these skills;
+still report what was verified. Do not duplicate SDD reviews.
+Do not invoke an excluded skill indirectly through another: disclose the dependency and adapt.
+For example, without `grilling`, clarify only essential ambiguities; without subagents,
+do not start SDD while pretending to provide independent review.
 
-Le skill incluse sono in `.agents/skills/<nome>/SKILL.md`. Se il client non espone
-un tool Skill, leggi il file e le sole risorse richieste. Il prefisso `superpowers:`
-nei testi upstream indica il nome omonimo in questa directory; non richiede un
-secondo plugin. `grill-with-docs` richiede anche `grilling` e `domain-modeling`.
-I percorsi relativi interni alle skill si risolvono dalla directory della skill.
-Non sostituire una skill locale con una globale omonima senza confrontare le versioni.
+Included skills live in `.agents/skills/<name>/SKILL.md`. If the client has no Skill tool,
+read the file and only its required resources. The upstream `superpowers:` prefix refers
+to the same-named skill in this directory; it does not require another plugin.
+`grill-with-docs` also requires `grilling` and `domain-modeling`.
+Resolve internal relative paths from the skill's directory. Do not replace a local skill
+with a global skill of the same name without comparing versions.
 
-Per vincoli dei tool, conflitti fra procedure, registro durevole e importazioni
-su progetti esistenti consulta `docs/development/COMPATIBILITY.md`.
-Non delegare da un subagente implementatore: il coordinatore assegna review e task.
-Il task corrente e le autorizzazioni già date prevalgono sulle convenzioni del kit.
+For tool constraints, procedure conflicts, durable logging, and existing-project imports,
+see `docs/development/COMPATIBILITY.md`. Implementer subagents must not delegate;
+the coordinator assigns reviews and tasks. The current task and existing authorization
+take precedence over kit conventions.
 
-Concludi ogni slice con criteri verificati, comandi realmente eseguiti, limiti,
-commit o diff e prossimo passo nel registro `docs/progress.md`.
+End each slice by recording verified criteria, commands actually run, limitations,
+commit or diff, and the next step in `docs/progress.md`.

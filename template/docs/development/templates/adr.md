@@ -1,18 +1,18 @@
-# ADR NNNN: [Decisione]
+# ADR NNNN: [Decision]
 
-Data: [data]. Stato: proposta | accettata | rifiutata | superata da [ADR].
+Date: [date]. Status: proposed | accepted | rejected | superseded by [ADR].
 
-## Contesto
-[Problema, vincoli ed evidenze; perché la decisione è rilevante.]
+## Context
+[Problem, constraints, and evidence; why this decision matters.]
 
-## Alternative
-[Opzioni reali, vantaggi e costi.]
+## Alternatives
+[Real options, benefits, and costs.]
 
-## Decisione
-[Scelta, ragione e autore/approvazione; link a specifica o prova.]
+## Decision
+[Choice, rationale, and author/approval; link to specification or evidence.]
 
-## Conseguenze
-[Benefici, costi accettati, rischi e mitigazioni; reversibilità.]
+## Consequences
+[Benefits, accepted costs, risks, mitigations, and reversibility.]
 
-## Verifica e revisione
-[Esperimento/indicatore e quando riconsiderare.]
+## Verification and review
+[Experiment/indicator and when to reconsider.]

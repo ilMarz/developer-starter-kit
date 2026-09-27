@@ -1,303 +1,298 @@
 # Developer Starter Kit
 
-Versione **0.2.0** · ricerca del 27 settembre 2026.
-Kit autonomo per sviluppare con agenti AI: 17 skill, template per specifiche/ADR/slice,
-loop di sviluppo, scelta del subset e dei modelli, importazione conservativa e verifiche.
-Repository autonomo: puoi spostare questa cartella. Non dipende da altri progetti.
+Version **0.2.1** · research dated September 27, 2026.
+A standalone kit for developing with AI agents: 17 skills, specification/ADR/slice templates,
+a development loop, configurable skills and models, conservative imports, and verification.
+You can move this directory. It does not depend on any other project.
 
-## 1. Apri il terminale nella cartella del kit
+## 1. Open a terminal in the kit directory
 
-Per scaricarlo su un altro computer con GitHub già autenticato:
+Clone the public repository on another computer:
 
 ```bash
 git clone https://github.com/ilMarz/developer-starter-kit.git
 cd developer-starter-kit
 ```
 
-Il repository è privato: l’account usato deve avere accesso. Se hai già il kit in locale,
-non clonarlo di nuovo.
-
-Tutti i comandi Python sotto partono dalla cartella che contiene questo README.
-Se sei nella directory che contiene il kit:
+No GitHub authentication is required to clone it. If you already have a local copy, do not clone it again.
+All Python commands below run from the directory containing this README.
+If you are in its parent directory:
 
 ```bash
 cd developer-starter-kit
 ```
 
-Controlla che Python sia disponibile e leggi i parametri supportati:
+Check Python and inspect the supported arguments:
 
 ```bash
 python3 --version
 python3 tools/bootstrap.py --help
 ```
 
-Serve Python **3.9 o successivo**. Per gli helper di sviluppo Superpowers servono anche
-Git e Bash. Il bootstrap usa soltanto la libreria standard di Python: niente `pip install`
-o `npm install` necessari per importare il kit.
+Requires **Python 3.9 or later**. The Superpowers development helpers also require Git and Bash.
+The bootstrap uses only the Python standard library: no `pip install` or `npm install` is needed to import the kit.
 
-## 2. Importa il kit
+## 2. Import the kit
 
-Gli esempi usano `$HOME/Progetti/…`: il terminale espande `$HOME` alla tua cartella utente.
-Puoi sostituire la destinazione con un altro percorso. Mantieni le virgolette se contiene spazi.
-La destinazione deve essere esterna alla cartella del kit.
+Examples use `$HOME/Projects/…`: your terminal expands `$HOME` to your home directory.
+Replace the destination as needed. Keep the quotes if the path contains spaces.
+The destination must be outside the kit directory.
 
-### Nuovo progetto — stack ancora da scegliere
+### New project — stack not selected yet
 
-Prima guarda cosa verrebbe copiato, senza scrivere nulla:
-
-```bash
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-progetto" --name mio-progetto --profile generic --dry-run
-```
-
-Poi importa davvero:
+First preview the files that would be copied, without writing anything:
 
 ```bash
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-progetto" --name mio-progetto --profile generic
+python3 tools/bootstrap.py --target "$HOME/Projects/my-project" --name my-project --profile generic --dry-run
 ```
 
-La cartella viene creata se manca. Deve essere vuota o inesistente per questo comando.
-Vengono copiati skill, template e configurazioni; nessuna applicazione è ancora implementata.
-
-### Nuovo progetto Python
+Then perform the import:
 
 ```bash
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-backend" --name mio-backend --profile python --dry-run
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-backend" --name mio-backend --profile python
+python3 tools/bootstrap.py --target "$HOME/Projects/my-project" --name my-project --profile generic
 ```
 
-### Nuovo progetto TypeScript
+The destination is created if missing. It must be empty or nonexistent for this command.
+Skills, templates, and configuration are copied; no application has been implemented yet.
+
+### New Python project
 
 ```bash
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-ecommerce" --name mio-ecommerce --profile typescript --dry-run
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-ecommerce" --name mio-ecommerce --profile typescript
+python3 tools/bootstrap.py --target "$HOME/Projects/my-backend" --name my-backend --profile python --dry-run
+python3 tools/bootstrap.py --target "$HOME/Projects/my-backend" --name my-backend --profile python
 ```
 
-### Nuovo prodotto che usa modelli AI a runtime
+### New TypeScript project
 
 ```bash
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-assistente" --name mio-assistente --profile ai --dry-run
-python3 tools/bootstrap.py --target "$HOME/Progetti/mio-assistente" --name mio-assistente --profile ai
+python3 tools/bootstrap.py --target "$HOME/Projects/my-store" --name my-store --profile typescript --dry-run
+python3 tools/bootstrap.py --target "$HOME/Projects/my-store" --name my-store --profile typescript
 ```
 
-`ai` riguarda il prodotto che stai costruendo. Lo sviluppo assistito da AI è disponibile
-in tutti i profili.
-
-### Progetto già esistente
-
-Sostituisci `ecommerce-esistente` con la cartella reale del tuo progetto:
+### New product using AI models at runtime
 
 ```bash
-python3 tools/bootstrap.py --target "$HOME/Progetti/ecommerce-esistente" --name ecommerce-esistente --profile generic --existing --dry-run
-python3 tools/bootstrap.py --target "$HOME/Progetti/ecommerce-esistente" --name ecommerce-esistente --profile generic --existing
+python3 tools/bootstrap.py --target "$HOME/Projects/my-assistant" --name my-assistant --profile ai --dry-run
+python3 tools/bootstrap.py --target "$HOME/Projects/my-assistant" --name my-assistant --profile ai
 ```
 
-`--existing` permette una destinazione non vuota, **non autorizza sovrascritture**.
-I file di istruzioni preesistenti restano intatti; le integrazioni proposte vengono salvate
-in `.devkit/proposed/`. Il programma elenca quelle da unire prima di usare il workflow.
-Altri file differenti in conflitto bloccano l'import prima delle scritture. File identici
-vengono riutilizzati. Il codice applicativo esistente viene conservato.
+`ai` describes the product you are building. AI-assisted development is available in every profile.
 
-### Tutti i parametri di bootstrap
+### Existing project
 
-| Parametro | Obbligatorio | Default | Significato |
+Replace `existing-store` with your actual project directory:
+
+```bash
+python3 tools/bootstrap.py --target "$HOME/Projects/existing-store" --name existing-store --profile generic --existing --dry-run
+python3 tools/bootstrap.py --target "$HOME/Projects/existing-store" --name existing-store --profile generic --existing
+```
+
+`--existing` permits a nonempty destination; it **does not authorize overwrites**.
+Existing instruction files remain intact; proposed additions are saved under `.devkit/proposed/`.
+The command lists files requiring a merge before using the workflow.
+Other conflicting files stop the import before any writes. Identical files are reused.
+Existing application code is preserved.
+
+### All bootstrap arguments
+
+| Argument | Required | Default | Meaning |
 | --- | --- | --- | --- |
-| `--target PERCORSO` | Sì | — | Cartella del progetto destinatario; relativa alla directory corrente o assoluta |
-| `--name NOME` | Sì | — | Nome registrato nella configurazione; non rinomina la cartella |
-| `--profile generic` | No | `generic` | Nessuno stack ancora scelto / stack diverso |
-| `--profile python` | No | — | Indica un progetto Python |
-| `--profile typescript` | No | — | Indica un progetto TypeScript |
-| `--profile ai` | No | — | Indica un prodotto con modelli AI a runtime |
-| `--existing` | No | Disattivato | Consente l'importazione conservativa in una cartella non vuota |
-| `--dry-run` | No | Disattivato | Verifica e mostra il piano di copia senza creare cartelle o file |
-| `--help` / `-h` | No | — | Mostra l'aiuto del comando |
+| `--target PATH` | Yes | — | Destination project directory, absolute or relative to the current directory |
+| `--name NAME` | Yes | — | Name recorded in configuration; does not rename the directory |
+| `--profile generic` | No | `generic` | Stack not selected yet, or another stack |
+| `--profile python` | No | — | Python project |
+| `--profile typescript` | No | — | TypeScript project |
+| `--profile ai` | No | — | Product using AI models at runtime |
+| `--existing` | No | Off | Allow a conservative import into a nonempty directory |
+| `--dry-run` | No | Off | Validate and show the copy plan without creating files or directories |
+| `--help` / `-h` | No | — | Show command help |
 
-Scegli **un solo valore** di `--profile`. Il profilo viene registrato in `.devkit/project.json`:
-serve all'agente per scegliere la guida al setup. **Le skill copiate sono le stesse**;
-non installa runtime, framework, dipendenze o servizi e non configura da solo i test.
+Choose **one value** for `--profile`. It is recorded in `.devkit/project.json` and helps the agent
+select setup guidance. **Every profile copies the same skills**. It does not install runtimes,
+frameworks, dependencies, or services, and does not configure application tests automatically.
 
-Il bootstrap non inizializza Git, non crea commit/remote/PR e non esegue workflow applicativi.
-Un secondo import identico con `--existing` è consentito. Dopo personalizzazioni può
-fermarsi per conflitti: non usarlo come comando per aggiornare un progetto alla nuova versione.
+The bootstrap does not initialize Git, create commits/remotes/PRs, or execute application workflows.
+An identical second import with `--existing` is supported. After customization it may stop on conflicts:
+do not use it to upgrade an existing project to a newer kit version.
 
-## 3. Apri il progetto in Codex
+## 3. Open your project in Codex
 
-Apri la cartella indicata in `--target`, non la cartella del kit. I messaggi seguenti
-vanno nella **chat di Codex**, non nel terminale.
+Open the directory specified by `--target`, rather than the kit directory.
+The following messages belong in **Codex chat**, not in the terminal.
 
-### Partire da un'idea
+### Start from an idea
 
 ```text
-Usa $dev-workflow. Voglio realizzare un ecommerce per prodotti artigianali.
-Verifica l'ambiente, chiarisci i requisiti mancanti e prepara la prima slice verificabile.
-Prima del codice proponi skill, convenzioni, tool, loop/subagenti e modelli che useresti.
+Use $dev-workflow. I want to build an ecommerce store for handmade products.
+Check the environment, clarify missing requirements, and prepare the first verifiable slice.
+Before coding, propose the skills, conventions, tools, loop/subagents, and models you would use.
 ```
 
-### Modificare un progetto esistente
+### Change an existing project
 
 ```text
-Usa $dev-workflow. Voglio aggiungere codici sconto percentuali con scadenza.
-Integra eventuali proposte di istruzioni del kit con quelle già presenti senza sostituirle.
-Studia checkout e test esistenti, preserva lo stack e proponi criteri e subset di lavoro.
-Non modificare la produzione.
+Use $dev-workflow. I want to add percentage discount codes with expiration dates.
+Merge any proposed kit instructions with the existing ones without replacing them.
+Inspect the existing checkout and tests, preserve the stack, and propose criteria and a working subset.
+Do not change production.
 ```
 
-### Accettare il metodo proposto
+### Accept the proposed approach
 
 ```text
-Procedi con il subset proposto per questa slice. Usa i criteri approvati e il budget concordato.
+Proceed with the proposed subset for this slice. Use the approved criteria and agreed budget.
 ```
 
-### Cambiare skill, convenzioni, loop e modelli
+### Change skills, conventions, loop, and models
 
 ```text
-Per questo incarico salta to-spec: i requisiti sono già nel ticket.
-Non usare subagenti né agentic loop: implementa direttamente e fai la verifica concordata.
-```
-
-```text
-Usa il loop con massimo due tentativi di correzione. Prima del dispatch mostrami i modelli
-realmente disponibili e proponi quale usare per implementazione e review.
+For this task, skip to-spec: the requirements are already in the ticket.
+Do not use subagents or an agentic loop: implement directly and perform the agreed verification.
 ```
 
 ```text
-Per implementare usa [ID modello disponibile] e per la review usa [altro ID disponibile].
-Non usare la skill [nome]. Questa preferenza vale solo per questo incarico.
+Use the loop with at most two fix attempts. Before dispatch, show me the models actually available
+and suggest which ones to use for implementation and review.
 ```
-
-Le parentesi quadre sono valori da sostituire: il kit non fissa nomi di modelli universali.
-Se hai già scelto metodo e chiesto di procedere, l'agente non richiede una seconda conferma.
-Puoi anche chiedere «vai direttamente al codice, senza skill». Le esclusioni valgono anche
-per i subagenti e le dipendenze indirette; l'agente riporta comunque le verifiche reali e i limiti.
-
-### Riprendere il giorno dopo
 
 ```text
-Usa $dev-workflow. Riprendi da docs/progress.md, controlla codice, commit e prove.
-Mantieni le scelte già concordate e continua il primo task incompleto.
+Use [available model ID] for implementation and [another available ID] for review.
+Do not use the [name] skill. This preference applies only to this task.
 ```
 
-### Correggere un bug
+Replace bracketed values. The kit does not prescribe universal model names.
+If you already chose an approach and asked to proceed, the agent does not request a second confirmation.
+You can also ask to go directly to code without skills. Exclusions apply to subagents and indirect
+dependencies too; the agent still reports actual verification and limitations.
+
+### Resume the next day
 
 ```text
-Usa $dev-workflow e diagnosing-bugs. Il checkout perde lo sconto quando cambio quantità.
-Riproduci il problema e proponi una correzione con verifica del caso originale e delle regressioni.
+Use $dev-workflow. Resume from docs/progress.md; check code, commits, and evidence.
+Keep the choices already agreed and continue the first incomplete task.
 ```
 
-## 4. Cercare novità e aggiornare il kit
-
-Apri **la cartella del kit** in Codex e scrivi in chat:
+### Fix a bug
 
 ```text
-Usa $update-devkit. Cerca aggiornamenti e nuove skill, strumenti e convenzioni che
-potrebbero migliorare questo kit. Proponi cosa integrare, perché e come verificarlo.
+Use $dev-workflow and diagnosing-bugs. Checkout loses the discount when I change quantities.
+Reproduce the problem and propose a fix that verifies the original case and regressions.
 ```
 
-La ricerca include novità fuori dall'inventario attuale. Salva proposte con ID in
-`docs/updates/`; in questa modalità non cambia le skill operative o le dipendenze.
-Può anche suggerire di rimuovere procedure inutili oppure concludere che non ci sono
-novità abbastanza utili. Non serve nominare una tecnologia in anticipo.
+## 4. Discover improvements and update the kit
 
-Dopo aver letto il report, seleziona in chat la proposta e il suo percorso reale:
+Open **the kit directory** in Codex and write in chat:
 
 ```text
-Usa $update-devkit. Applica U-01 del report [percorso del report].
-Mantieni le personalizzazioni, esegui le verifiche pertinenti e lascia U-02 rimandata.
+Use $update-devkit. Search for updates and new skills, tools, and conventions that could improve
+this kit. Propose what to integrate, why, and how to verify it.
 ```
 
-Non esiste un comando shell di auto-update: la skill coordina la ricerca e le modifiche
-attraverso i tool dell'agente. Non è un monitoraggio in background. I progetti già importati
-non cambiano da soli; per ciascuno si confronta e si integra il delta autorizzato.
+Research includes opportunities outside the current inventory. Proposals with IDs are saved in
+`docs/updates/`; this mode leaves operational skills and dependencies unchanged.
+It may also suggest removing unnecessary steps, or conclude that no discovery is useful enough.
+You do not need to name a technology in advance.
 
-La skill nel repository è esposta da `.agents/skills/update-devkit`, link relativo a
-`skills/update-devkit`. Se non appare nel client, chiedi:
+After reading the report, select a proposal and its actual path in chat:
 
 ```text
-Leggi skills/update-devkit/SKILL.md e applicala per cercare novità utili a questo kit.
+Use $update-devkit. Apply U-01 from [report path].
+Preserve customizations, run the relevant checks, and leave U-02 deferred.
 ```
 
-Nei progetti importati le skill sono directory normali in `.agents/skills/`. Se hai copie
-globali omonime, il client potrebbe mostrarle entrambe: indica la copia del progetto.
+There is no shell auto-update command: the skill coordinates research and changes through the agent's
+tools. It does not monitor in the background. Existing project imports do not update themselves;
+compare and merge the authorized changes separately for each project.
 
-## 5. Comandi di verifica — nel terminale del kit
+The repository exposes the skill through `.agents/skills/update-devkit`, a relative link to
+`skills/update-devkit`. If it does not appear in your client, ask:
 
-Controllare che le 15 skill esterne corrispondano alle snapshot registrate:
+```text
+Read skills/update-devkit/SKILL.md and use it to discover useful improvements for this kit.
+```
+
+Imported projects contain regular skill directories under `.agents/skills/`. If global skills share
+the same names, the client may show both: specify the project copy.
+
+## 5. Verification commands — run from the kit directory
+
+Check that the 15 third-party skills match the recorded snapshots:
 
 ```bash
 python3 tools/verify.py
 ```
 
-Eseguire i test del bootstrap:
+Run bootstrap tests:
 
 ```bash
 python3 -m unittest discover -s tests -v
 ```
 
-Vedere quali file sono cambiati in un progetto rispetto alla copia importata:
+Inspect changes in a project relative to its imported copy:
 
 ```bash
-python3 tools/verify.py --project "$HOME/Progetti/mio-progetto"
+python3 tools/verify.py --project "$HOME/Projects/my-project"
 ```
 
-Aiuto del verificatore:
+Show verifier help:
 
 ```bash
 python3 tools/verify.py --help
 ```
 
-| Parametro/esito | Significato |
+| Argument/result | Meaning |
 | --- | --- |
-| Nessun parametro | Verifica gli hash delle skill esterne distribuite nel kit |
-| `--project PERCORSO` | Confronta i file registrati in `.devkit/import.json` con il progetto attuale |
-| `--help` / `-h` | Mostra l'aiuto |
-| Exit code `0` | Controllo completato senza differenze rilevate |
-| Exit code `1` | Il progetto contiene file modificati o mancanti rispetto all'import |
-| Exit code `2` | Controllo/import non eseguibile, conflitti oppure integrità vendor fallita |
+| No arguments | Verify the hashes of the third-party skills shipped with the kit |
+| `--project PATH` | Compare files recorded in `.devkit/import.json` with the current project |
+| `--help` / `-h` | Show help |
+| Exit code `0` | Check completed with no differences detected |
+| Exit code `1` | Project files have changed or are missing since import |
+| Exit code `2` | Check/import could not run, conflicts were found, or vendor integrity failed |
 
-**Integrità** significa confronto delle impronte digitali dei file: conferma che sono le
-copie previste, non che siano buone o sicure. Il **drift** segnala differenze dopo l'import:
-spesso sono personalizzazioni intenzionali. Il verificatore non le corregge e non prova
-che l'applicazione funzioni. I test della tua applicazione saranno configurati al setup.
+**Integrity** means comparing file fingerprints: it confirms expected copies, not their quality or
+safety. **Drift** indicates changes since import, often intentional customizations. The verifier
+neither fixes them nor proves that the application works. Application tests are configured during setup.
 
-## Cosa configuriamo nel progetto
+## Project configuration
 
-| File importato | Contenuto |
+| Imported file | Contents |
 | --- | --- |
-| `.devkit/project.json` | Nome, profilo e comandi setup/lint/typecheck/test/build/e2e da verificare |
-| `.devkit/workflow.json` | Preferenze su skill, convenzioni, tool, esecuzione e scheda iniziale |
-| `.devkit/models.json` | Modelli e reasoning per ruolo, da scegliere fra quelli disponibili |
-| `.devkit/loop.json` | Budget e condizioni di stop; valori iniziali proposti, non già approvati |
-| `AGENTS.md` | Istruzioni brevi per l'agente |
-| `CONTEXT.md` | Glossario del dominio |
-| `docs/progress.md` | Stato durevole, prove, limiti e prossimo passo |
-| `docs/development/templates/` | Specifica, ADR, slice, piano, report ed eval da usare quando necessari |
+| `.devkit/project.json` | Name, profile, and setup/lint/typecheck/test/build/e2e commands to verify |
+| `.devkit/workflow.json` | Preferences for skills, conventions, tools, execution, and the initial working agreement |
+| `.devkit/models.json` | Models and reasoning by role, selected from available options |
+| `.devkit/loop.json` | Budgets and stop conditions; initial values are proposals, not approved limits |
+| `AGENTS.md` | Short agent instructions |
+| `CONTEXT.md` | Domain glossary |
+| `docs/progress.md` | Durable status, evidence, limitations, and next step |
+| `docs/development/templates/` | Specification, ADR, slice, plan, report, and eval templates to use when needed |
 
-Puoi esprimere preferenze in chat: non devi editare JSON a mano. Le scelte del singolo
-incarico non diventano permanenti se non lo chiedi. Questi file sono letti dall'agente:
-non sono un runtime, non abilitano un provider e non impongono da soli limiti di spesa.
+You can express preferences in chat; no manual JSON editing is required. Task-specific choices become
+permanent only when you request it. These files are read by the agent: they are not a runtime,
+do not enable a provider, and do not enforce spending limits themselves.
 
-## Contenuto e documentazione
+## Contents and documentation
 
 - **Matt Pocock (9):** grilling, domain-modeling, grill-with-docs, to-spec, to-tickets,
   codebase-design, tdd, diagnosing-bugs, setup-matt-pocock-skills.
 - **Superpowers (6):** using-git-worktrees, writing-plans, subagent-driven-development,
   requesting-code-review, verification-before-completion, finishing-a-development-branch.
-- **Originali (2):** dev-workflow, update-devkit.
+- **Original (2):** dev-workflow, update-devkit.
 
-Le copie esterne e le licenze sono conservate con hash in `skills.lock.json`. Le quattro
-snapshot locali Superpowers non hanno un commit upstream attribuito: la provenienza è esplicita.
-Le skill del client skill-creator/skill-installer/openai-docs non sono dipendenze del kit.
+Third-party copies and licenses are pinned with hashes in `skills.lock.json`. The four local
+Superpowers snapshots have no attributed upstream commit; their provenance is explicit.
+The client skills skill-creator/skill-installer/openai-docs are not kit dependencies.
 
-- [Guida di primo avvio](template/docs/development/START-HERE.md)
-- [Scheda e scelta del subset](template/docs/development/WORKING-AGREEMENT.md)
-- [Agentic loop e modelli](template/docs/development/AGENTIC-LOOP.md)
-- [Raccordi fra procedure](template/docs/development/COMPATIBILITY.md)
-- [Fonti e pratiche](docs/SOURCES.md)
-- [Confronto Spec Kit, BMAD, GSD e Agent OS](docs/ECOSYSTEM.md)
-- [Verifiche effettive e limiti](docs/VALIDATION.md)
+- [Getting started](template/docs/development/START-HERE.md)
+- [Working agreement and subset selection](template/docs/development/WORKING-AGREEMENT.md)
+- [Agentic loop and models](template/docs/development/AGENTIC-LOOP.md)
+- [Procedure compatibility](template/docs/development/COMPATIBILITY.md)
+- [Sources and practices](docs/SOURCES.md)
+- [Spec Kit, BMAD, GSD, and Agent OS comparison](docs/ECOSYSTEM.md)
+- [Actual validation and limitations](docs/VALIDATION.md)
 - [Changelog](CHANGELOG.md)
-- [Licenze e provenienza](THIRD_PARTY_NOTICES.md)
+- [Licenses and provenance](THIRD_PARTY_NOTICES.md)
 
-La CI in `.github/workflows/check-kit.yml` è predisposta per il futuro repository GitHub;
-non è stata eseguita sul servizio. Non sono impostati remote, pubblicazioni o licenza del
-prodotto che creerai. Usa il bootstrap per importare solo il materiale necessario, anziché
-copiare tutto il repository del kit dentro una nuova applicazione.
+The kit's CI in `.github/workflows/check-kit.yml` runs snapshot verification and bootstrap tests on
+Linux with Python 3.11 and 3.13; see [validation evidence](docs/VALIDATION.md).
+The bootstrap does not configure remotes, publication, or licensing for your future product.
+Use it to import the required material rather than copying this entire repository into an application.
