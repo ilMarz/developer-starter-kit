@@ -12,7 +12,7 @@ source provenance, checks, and instruction merges already performed. Reuse that 
    repository, the agent first inspects implementation, Git, instructions, and tests.
 4. Select the stack and versions based on the project; read `PROFILES.md` for your profile.
    Create suitable manifests/lockfiles and configure commands in `.devkit/project.json`.
-   The bootstrap has not installed application runtimes or dependencies.
+   The kit import has not installed application runtimes or dependencies.
 5. For a new project, initialize Git and record a baseline when the content is ready.
    Check the diff and secrets before committing. Do not add remotes or publish without authorization.
 6. Define criteria, the first slice, budgets, and limits in `.devkit/loop.json`. Configure roles
@@ -25,7 +25,7 @@ skills, conventions, tools, loop, subagents, and models. If you already specifie
 and asked to proceed, no further confirmation is needed. Task-specific choices do not automatically
 become permanent preferences.
 
-`setup-matt-pocock-skills` is included to reconfigure tracker and layout. The bootstrap already
+`setup-matt-pocock-skills` is included to reconfigure tracker and layout. The kit import already
 provides the minimal local files; no need to repeat the questionnaire if the conventions suit you.
 
 ## Ready-to-use prompts

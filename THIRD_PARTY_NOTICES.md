@@ -12,7 +12,7 @@ Snapshots are unchanged. Integration conventions are separate in
 Included scripts were inspected; no upstream installer or hook was executed.
 This does not constitute a complete security audit of the ecosystem.
 
-No license has been selected for this kit's original material (bootstrap, templates,
+No license has been selected for this kit's original material (maintenance tools, templates,
 devkit, dev-workflow, and update-devkit). Public visibility does not itself grant an open-source license.
 Retain the MIT licenses for third-party material and choose a license for original material
 before distributing it under an explicit license.

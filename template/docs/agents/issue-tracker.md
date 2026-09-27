@@ -1,6 +1,6 @@
 # Issue tracker
 
-The bootstrap configures a local tracker, which can be changed on request.
+The kit import configures a local tracker, which can be changed on request.
 Specifications: `docs/specs/<feature>.md`.
 Tickets/slices: one `docs/work/<feature>/issues/<NN>-<slug>.md` file per increment.
 Link the specification, identify dependencies by ID, and maintain status and criteria.

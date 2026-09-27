@@ -12,8 +12,8 @@ team and automatic budget/model enforcement were not demonstrated; the kit corre
 
 ## Actual executions
 
-- `PYTHONDONTWRITEBYTECODE=1 python3 tools/verify.py`: exit 0; 15 vendor skills verified.
-- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v`: exit 0; 12 tests passed.
+- Historical vendor-verifier command (0.1.0): exit 0; 15 vendor skills verified.
+- Historical importer test suite (0.1.0): exit 0; 12 tests passed.
   Observed coverage: dry run, new/existing imports, preservation, conflicts before writes,
   idempotency, edited configuration, symlinks, path obstructions, drift, SDD helper, and vendor tampering.
 - Copied the entire kit to an external temporary directory, then imported from that copy into a

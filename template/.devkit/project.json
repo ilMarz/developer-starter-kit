@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "name": null,
+  "profile": "generic",
+  "status": "needs-project-setup",
+  "commands": {
+    "setup": null,
+    "lint": null,
+    "typecheck": null,
+    "test": null,
+    "build": null,
+    "e2e": null
+  },
+  "commands_note": "Documentation only: not executed during import. Fill in verified commands.",
+  "external_effects": "Require task-specific authorization; existing authorization remains valid.",
+  "model_budget": null
+}

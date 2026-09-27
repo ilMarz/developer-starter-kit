@@ -20,8 +20,8 @@ https://github.com/ilMarz/developer-starter-kit/tree/main/installer/devkit
 The entry skill is self-contained: you do not need to clone the whole kit first.
 It retrieves a source snapshot when setting up a project. You need an agent with file tools
 and access to the source repository (or an existing local copy).
-**No Python commands are required from you.** When Python is unavailable or excluded,
-the agent imports with file/comparison/hash tools. Python remains optional for the CLI.
+**No setup scripts or language runtime are required to use the kit.** The agent imports
+with file/comparison/hash tools. It checks the full plan before writing and records the result.
 Git and Bash are required only for the helpers that use them.
 
 Prefer to clone and install manually? From a terminal:
@@ -74,7 +74,7 @@ Inspect the checkout and tests, then propose the first slice and working approac
 
 **`devkit` sets up the project; `dev-workflow` guides development afterward.**
 The entry skill stays in your personal installation; the 17 workflow skills are local to each project.
-For explicit terminal commands and all parameters, see [optional CLI import](docs/CLI-IMPORT.md).
+See the [import procedure](installer/devkit/references/tool-based-import.md) for preservation and verification rules.
 
 ## What's included
 
@@ -87,8 +87,8 @@ For explicit terminal commands and all parameters, see [optional CLI import](doc
 | **Vertical slices** | Small increments that deliver testable behavior across the required layers |
 | **Specs and ADRs** | Acceptance criteria and architecture decision records for significant choices |
 | **Progress and handoff** | A durable log of decisions, evidence, limitations, and the next task |
-| **Bootstrap and verification CLI** | Import files conservatively, verify vendor snapshots, and detect changes after import |
-| **Kit CI** | Snapshot verification and bootstrap tests on Python 3.11 and 3.13 |
+| **Agent-driven import** | Preserve existing files, verify vendor hashes, and record the imported baseline |
+| **Kit CI** | Verify vendor snapshots, import metadata, and maintenance checks |
 
 Multi-agent execution uses your client's tools. The kit does not ship an agent runtime, provider credentials, background service, or technical spending cap. Project test runners and browser tools are selected from what is actually available.
 
@@ -156,15 +156,16 @@ Propose what to integrate, why, and how to verify it.
 
 Reports go into `docs/updates/`. Select what to apply with `Use $update-devkit. Apply U-01 from [report path].` No automatic adoption or propagation to existing projects. If discovery fails, ask the agent to read `skills/update-devkit/SKILL.md` directly.
 
-**Verify files (optional Python CLI):** run from a cloned kit directory:
+**Verify an installation:** ask in chat:
 
-```bash
-python3 tools/verify.py                                      # Check vendor snapshot hashes
-python3 -m unittest discover -s tests -v                     # Test the bootstrap
-python3 tools/verify.py --project "$HOME/Projects/my-store"  # Find changes since import
+```text
+Use $devkit. Check this installation against its recorded hashes and report changes.
+Do not modify or update anything.
 ```
 
-Integrity checks confirm expected file copies, not application quality. Project changes may be intentional. Without Python, ask `$devkit` to inspect the installed state with file/hash tools. Verifier exit codes: `0` unchanged, `1` modified/missing project files, `2` error. Use `--help` for command help.
+Integrity checks confirm expected copies, not application quality. Changes may be intentional.
+Repository maintainers can run `node tools/check-kit.mjs` and `node --test tests/*.test.mjs`;
+these are read-only maintenance checks, not installation requirements.
 
 ## Further reading
 

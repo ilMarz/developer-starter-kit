@@ -13,7 +13,7 @@ dependencies. Do not favor a particular technology or turn a user's example into
 
 Read applicable instructions and identify the destination from actual files:
 
-- Kit repository: `skills.lock.json`, `skills/`, `template/`, `tools/bootstrap.py`.
+- Kit repository: `skills.lock.json`, `skills/`, `template/`, `import-contract.json`.
 - Imported project: `.devkit/import.json`, `.devkit/skills.lock.json`, `.agents/skills/`.
 
 Do not infer the source repository from a directory name or historical paths.
@@ -29,8 +29,8 @@ new dependencies, services, costs, or procedures that change the workflow.
 ## 2. Inventory and current research
 
 Read the version, skill provenance, customizations, profiles, integration rules, and previous update
-reports. In the kit, run `python3 tools/verify.py` for integrity; do not fix a failure by simply
-rewriting hashes.
+reports. Verify the lockfile hashes with available file/hash tools; maintainers may also use
+`node tools/check-kit.mjs` if Node is already available. Do not repair failures by rewriting hashes.
 
 See [references/research.md](references/research.md) for sources and criteria.
 Conduct two complementary searches:
@@ -81,12 +81,12 @@ a reversible implementation detail within scope does not.
 - Keep one coordinator, consistent integration rules, test interfaces, and user criteria.
   Tools or frameworks may remain optional modules; do not enable them for every profile by default.
 - Update kit version, release notes, sources, documentation, and origin snapshots consistently.
-  Run integrity checks, bootstrap tests, and verification relevant to changed procedures.
+  Run integrity checks, maintenance tests and import evaluations, and verification relevant to changed procedures.
 - Missing credentials or access: retain the integration as candidate/unverified, not as a demonstrated
   active feature. A test double is not live evidence.
 
 This skill coordinates changes through agent tools; it is not an automatic transactional updater.
-In an imported project, do not use `bootstrap.py --existing` as a migration: compare against the
+In an imported project, do not repeat the initial import as a migration: compare against the
 baseline, preserve customizations, and merge only selected changes. Do not rewrite the import
 manifest to hide drift; document the merge and update provenance only for files actually adopted.
 

@@ -2,7 +2,7 @@
 
 Research dated **September 27, 2026**. Goal: identify reusable practices for this starter while
 retaining Matt Pocock for specifications, slices, TDD, and debugging; local Superpowers for
-isolated execution/review; and the kit's conservative bootstrap.
+isolated execution/review; and the kit's conservative import approach.
 This is not an effectiveness ranking: stars and activity indicate adoption and maintenance,
 not measured correctness, safety, or productivity.
 

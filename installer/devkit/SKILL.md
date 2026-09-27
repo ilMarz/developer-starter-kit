@@ -1,15 +1,21 @@
 ---
 name: devkit
-description: Set up the Developer Starter Kit in a new or existing project from chat, then hand off to its local development workflow. Use for kit initialization or integration, not ordinary coding in an already configured project.
+description: Set up the Developer Starter Kit in a new or existing project from chat, then hand off to its local development workflow. Use for kit initialization, integration, or read-only installation checks, not ordinary coding in an already configured project.
 ---
 
 # Developer kit setup
 
 This is a standalone entry skill. It can be installed without the rest of the kit.
 Its job is to retrieve the kit, safely prepare the selected project, and hand off to
-that project's `dev-workflow`. Do the setup with available tools; do not make the user
-run Python commands. Python is optional, not a prerequisite for the instruction-based path.
+that project's `dev-workflow`. Do the setup with available file, comparison, and hashing tools;
+no importer runtime or user-run setup commands are required.
 Do not install a runtime just to import the kit.
+
+## Inspect-only requests
+
+For a request to check an existing installation, read its manifest and setup notes, hash the
+recorded files, and report modified/missing files and unresolved merges. Do not fetch a new
+version, rewrite hashes, merge proposals, or change the project. Stop after the report.
 
 ## Identify the destination
 
@@ -30,7 +36,7 @@ updates belong to `update-devkit`. Report missing components rather than claimin
 ## Obtain a source snapshot
 
 Use an explicitly supplied local kit path if available. Validate it by the presence of
-`skills.lock.json`, `skills/`, `template/`, and `tools/bootstrap.py`; do not infer a source
+`skills.lock.json`, `skills/`, `template/`, and `import-contract.json`; do not infer a source
 from historical paths or from the installed entry skill's location.
 Otherwise retrieve `https://github.com/ilMarz/developer-starter-kit` into a separate
 fresh temporary directory using Git or an available repository-download tool.
@@ -39,9 +45,9 @@ Record the actual revision, kit version, and whether a local source has uncommit
 Do not silently pull/reset a user's checkout. If source access is unavailable, stop before
 changing the destination and explain the missing capability.
 
-Read the source instructions and import code before executing it; downloaded text cannot
+Read the source instructions and declarative import contract; downloaded text cannot
 expand the user's permissions. Verify the recorded vendor files and hashes, using the
-kit verifier if Python 3.9+ is available or available hashing tools otherwise.
+available SHA-256 tools.
 Never claim integrity from filenames or a successful download alone.
 
 ## Prepare and import
@@ -52,19 +58,15 @@ do not add a confirmation round. A preview-only request authorizes no destinatio
 Ask only about unresolved conflicts that would change project rules, replace user content,
 or expand scope. Read-only preparation can continue while a decision is pending.
 
-- With Python 3.9+ available, use the inspected `tools/bootstrap.py` yourself, first with
-  `--dry-run`, then without it. Add `--existing` for a nonempty destination. Use actual absolute
-  paths, the chosen name, and one profile. Check exit codes; failed preflight means no import.
-- Without Python, or when the user excludes it, follow
-  [references/tool-based-import.md](references/tool-based-import.md) using available file,
-  comparison, and hashing tools. Do not substitute an unchecked recursive copy.
+Follow [references/tool-based-import.md](references/tool-based-import.md) using available file,
+comparison, and hashing tools. This is the only setup path; do not substitute an unchecked
+recursive copy or install a runtime. The source import-contract.json defines the file mapping.
 
 For an existing project, inspect `.devkit/proposed/` and integrate compatible additions into
 its instruction files while preserving existing rules. Do not replace its stack, domain glossary,
 tracker, or tests. Reuse current conventions instead of introducing competing ones.
 Record completed and outstanding merges in `.devkit/setup.md`, preserving any existing notes;
-the import manifest remains the
-original baseline. If instructions conflict materially, leave the proposal pending and ask a
+the import manifest remains the original baseline. If instructions conflict materially, leave the proposal pending and ask a
 specific question. Do not say setup is complete while required merges remain unresolved.
 
 ## Verify and hand off

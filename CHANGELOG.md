@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 — September 27, 2026
+
+- Remove the Python bootstrap, verifier, tests, and CLI import guide.
+- Make agent file-tool setup the only import path; no installation runtime is required.
+- Define file mappings in import-contract.json and ship project configuration as a template.
+- Use dependency-free Node maintenance checks in CI; Node is not needed to use the skills.
+- Preserve existing import manifests and keep the Python application profile as an optional stack.
+
 ## 0.3.0 — September 27, 2026
 
 - Add standalone `devkit` entry skill under `installer/devkit`: install once, initialize or

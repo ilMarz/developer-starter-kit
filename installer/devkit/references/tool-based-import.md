@@ -1,14 +1,14 @@
-# Import with file tools, without Python
+# Import with agent file tools
 
-Use this only when Python is unavailable or excluded. This is an agent-executed procedure,
-not a second bundled importer. It requires file enumeration/read/write/copy, byte comparison,
-and SHA-256 hashing capabilities (for example shell tools `cmp` and `shasum -a 256` or
-`sha256sum`). Use available tools; do not install Python or another runtime to satisfy this path.
-If a required capability is missing, report it and stop before writes. Never fabricate hashes.
+This is the setup procedure for every import. It is agent-executed, not a bundled importer.
+It requires file enumeration/read/write/copy, byte comparison, and SHA-256 hashing capabilities
+(for example shell tools `cmp` and `shasum -a 256` or `sha256sum`). Use available tools; do not
+install a runtime. If a required capability is missing, stop before writes and report it.
+Never fabricate hashes.
 
 ## 1. Build and verify the complete plan
 
-Read `tools/bootstrap.py` in the selected snapshot as the authoritative import contract.
+Read `import-contract.json` in the selected snapshot as the authoritative import contract.
 Use the same mapping, including hidden files:
 
 | Source | Destination |
@@ -24,7 +24,7 @@ or maintenance documents. Copy source bytes exactly. Generate only the project c
 and import manifest described below. Do not write an application scaffold during import.
 
 Read the lockfile as data. Verify every vendor/license hash and reject missing, changed,
-symlinked, or unexpected vendor files, using the source's `FIRST_PARTY_SKILLS` exclusions.
+symlinked, or unexpected vendor files, using `first_party_skills` from that contract.
 Do not execute JSON or interpolate untrusted paths into shell code. Validate relative paths:
 no absolute paths or parent traversal, and every path must stay within its source/destination root.
 
@@ -49,10 +49,10 @@ report the plan without creating the target or writing any files within it.
 
 ## 2. Record the same import contract
 
-Generate `.devkit/project.json` with the schema and values used by `collect()` in the source
-`tools/bootstrap.py`: `schema_version: 1`, selected name/profile, `status: needs-project-setup`,
-null setup/lint/typecheck/test/build/e2e commands, the same commands note and external-effects
-policy, and `model_budget: null`. Use valid JSON serialization and preserve its types.
+Copy `template/.devkit/project.json`, setting only `name` and `profile` to the selected values.
+Use a nonempty name without control characters and a profile listed in the contract.
+Preserve all other keys and types; null commands mean setup remains incomplete.
+This configuration is the one intentional transformation of a template during import.
 
 Generate `.devkit/import.json`:
 
@@ -63,10 +63,8 @@ Generate `.devkit/import.json`:
   For a protected conflict, track the proposal path, not the untouched user file.
   Include generated `.devkit/project.json`; exclude the import manifest itself and later setup notes.
 
-Use stable formatting matching the Python importer (two-space indentation, trailing newline,
-sorted file keys). Preserve the project name as UTF-8. Preflight generated destinations too.
-If byte-identical generation cannot be guaranteed, disclose that a later Python reimport may
-report a configuration/manifest conflict; verification still uses actual recorded file hashes.
+Use stable JSON formatting (two-space indentation, trailing newline, sorted file keys).
+Preserve the project name as UTF-8. Preflight generated destinations too.
 The import manifest is a baseline, not a claim that project behavior has been tested.
 
 ## 3. Apply and check
@@ -83,5 +81,4 @@ Git metadata, or external service was changed. Report exact tool failures rather
 Then return to the entry skill to merge compatible instruction proposals and write setup notes.
 Keep original import hashes; edits to tracked files remain visible as drift. Protected user files
 are not tracked when their proposals are imported, so record their merges explicitly in setup notes.
-Never rewrite the baseline to conceal local modifications. Use native file tools for later inspection when Python
-is unavailable; do not claim that `tools/verify.py` was run.
+Never rewrite the baseline to conceal local modifications. Use file/hash tools for later inspection and report only checks actually performed.

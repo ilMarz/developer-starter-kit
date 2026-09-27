@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "first_party_skills": [
+    "dev-workflow",
+    "update-devkit"
+  ],
+  "profiles": [
+    "generic",
+    "python",
+    "typescript",
+    "ai"
+  ],
+  "mappings": [
+    {
+      "source": "template",
+      "destination": "."
+    },
+    {
+      "source": "skills",
+      "destination": ".agents/skills"
+    },
+    {
+      "source": "licenses",
+      "destination": ".devkit/licenses"
+    },
+    {
+      "source": "skills.lock.json",
+      "destination": ".devkit/skills.lock.json"
+    },
+    {
+      "source": "THIRD_PARTY_NOTICES.md",
+      "destination": ".devkit/THIRD_PARTY_NOTICES.md"
+    }
+  ],
+  "protected_paths": [
+    "AGENTS.md",
+    "CONTEXT.md",
+    ".gitignore",
+    "docs/agents/domain.md",
+    "docs/agents/issue-tracker.md",
+    "docs/agents/triage-labels.md"
+  ],
+  "proposal_directory": ".devkit/proposed",
+  "manifest": ".devkit/import.json",
+  "setup_notes": ".devkit/setup.md"
+}

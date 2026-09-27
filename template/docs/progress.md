@@ -1,6 +1,6 @@
 # Durable progress log
 
-Bootstrap imported; no feature implemented or application verification performed.
+Kit imported; no feature implemented or application verification performed.
 
 | Slice/task | Status | Commit/diff | Evidence | Limitations / next step |
 | --- | --- | --- | --- | --- |
