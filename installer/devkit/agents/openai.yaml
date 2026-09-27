@@ -1,0 +1,4 @@
+interface:
+  display_name: "Developer Kit Setup"
+  short_description: "Set up a new or existing project from chat"
+  default_prompt: "Use $devkit to set up this project with the Developer Starter Kit, preserving existing files and conventions."

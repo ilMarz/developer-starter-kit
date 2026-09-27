@@ -11,3 +11,7 @@ Preserve existing project files; do not perform silent updates or global changes
 To discover improvements and update this kit, use `skills/update-devkit/SKILL.md`.
 The discovery path `.agents/skills/update-devkit` points to the same skill.
 The default mode produces evidence-based proposals, including opportunities outside the inventory.
+
+The standalone entry skill is in `installer/devkit/`, exposed locally through
+`.agents/skills/devkit`. It is installed personally, not copied by the project bootstrap.
+Validate its setup behavior in isolated temporary fixtures, including the no-Python path.

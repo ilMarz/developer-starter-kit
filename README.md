@@ -1,78 +1,86 @@
 # Developer Starter Kit
 
 **A reusable toolkit for building software with AI agents, from a new idea or inside an existing codebase.**
-It adds 17 skills, development conventions, planning templates, and a configurable implementation/review workflow to your project.
+Install one entry skill, then ask it to add 17 project skills, development conventions, planning templates, and a configurable implementation/review workflow.
 
-**How it works:** import the kit → open your project in Codex → describe the task → choose the suggested skills and tools → implement and verify.
+**How it works:** install `devkit` once → open a project → ask it to set up the kit → choose your working approach → implement and verify.
 The import prepares your project for this workflow; the agent then helps build the application.
 
-## Quick start
+## Quick start — install once, use from chat
 
-Requires **Python 3.9+** and an AI coding client. The instructions below target Codex; other clients require compatibility checks. Git and Bash are needed for the Superpowers helpers. No Python packages need installing.
+### 1. Install the entry skill in Codex
+
+Paste this into **Codex chat**:
+
+```text
+Use $skill-installer to install the devkit skill from
+https://github.com/ilMarz/developer-starter-kit/tree/main/installer/devkit
+```
+
+The entry skill is self-contained: you do not need to clone the whole kit first.
+It retrieves a source snapshot when setting up a project. You need an agent with file tools
+and access to the source repository (or an existing local copy).
+**No Python commands are required from you.** When Python is unavailable or excluded,
+the agent imports with file/comparison/hash tools. Python remains optional for the CLI.
+Git and Bash are required only for the helpers that use them.
+
+Prefer to clone and install manually? From a terminal:
 
 ```bash
 git clone https://github.com/ilMarz/developer-starter-kit.git
 cd developer-starter-kit
+skill_dir="${CODEX_HOME:-$HOME/.codex}/skills/devkit"
+if [ -e "$skill_dir" ] || [ -L "$skill_dir" ]; then
+  echo "devkit already exists; compare before updating."
+else
+  mkdir -p "$(dirname "$skill_dir")"
+  cp -R installer/devkit "$skill_dir"
+fi
 ```
 
-Run the following commands from this kit directory. Replace the example project paths as needed; the destination must be outside the kit.
+### 2. Create a project from scratch
 
-### Create a project from scratch
-
-Preview the import, then create the project directory with the kit inside:
-
-```bash
-python3 tools/bootstrap.py --target "$HOME/Projects/my-store" --name my-store --profile typescript --dry-run
-python3 tools/bootstrap.py --target "$HOME/Projects/my-store" --name my-store --profile typescript
-```
-
-Open **`$HOME/Projects/my-store`** in Codex and send this in chat:
+Send in **Codex chat**, replacing the destination with your preferred path:
 
 ```text
-Use $dev-workflow. Build an ecommerce store for handmade products.
-Clarify the requirements, set up the stack, and prepare the first working slice.
-Before coding, suggest the skills, conventions, tools, agents, and models to use.
+Use $devkit. Create a new project at ~/Projects/my-store for an ecommerce store.
+Set up the kit, then help me clarify requirements and choose the stack.
+Before implementation, propose the skills, tools, agents, loop, and models to use.
 ```
 
-The destination must be empty or nonexistent. The bootstrap copies the kit; stack selection, dependencies, application code, and tests are handled with the agent afterward.
+The agent prepares the destination and then reads its local `dev-workflow` skill.
+Importing the kit does not itself build the store or install application dependencies.
 
-### Add the kit to an existing project
+### 3. Or add it to an existing project
 
-Use `--existing` to import alongside your current code:
+Open your project in Codex and send:
 
-```bash
-python3 tools/bootstrap.py --target "$HOME/Projects/existing-store" --name existing-store --existing --dry-run
-python3 tools/bootstrap.py --target "$HOME/Projects/existing-store" --name existing-store --existing
+```text
+Use $devkit. Integrate the kit into this project, preserving its code, stack,
+tests, and existing instructions. Set up only; do not implement features yet.
 ```
 
-Open **your existing project** in Codex and send:
+The agent previews the import, preserves existing files, and merges compatible instruction
+additions. Conflicting rules require a decision; other file conflicts stop the import.
+For a preview without project writes, add **“Preview only; do not modify the project.”**
+Already configured projects resume their existing workflow; they are not silently upgraded.
+
+### 4. Develop with the project skills
 
 ```text
 Use $dev-workflow. Add percentage discount codes with expiration dates.
-Merge any kit instruction proposals with the existing instructions first.
-Inspect the checkout and tests, preserve the stack, and propose the first slice and working approach.
+Inspect the checkout and tests, then propose the first slice and working approach.
 ```
 
-Existing instruction files are preserved; merge proposals go into `.devkit/proposed/`. The command lists required merges. Other conflicting files stop the import before any writes; identical files are reused. `--existing` is not an upgrade command.
-
-### Import options
-
-| Option | Purpose |
-| --- | --- |
-| `--target PATH` | Required. Destination directory, absolute or relative |
-| `--name NAME` | Required. Project name in configuration; does not rename the directory |
-| `--profile generic\|python\|typescript\|ai` | Setup guidance; default: `generic`. Choose one value |
-| `--existing` | Allow a conservative import into a nonempty project |
-| `--dry-run` | Preview and validate without writing files |
-| `--help` / `-h` | Show command help |
-
-All profiles include the same skills. `ai` means the **product** uses AI at runtime; AI-assisted development works with every profile. Import does not initialize Git, install dependencies, or publish anything.
+**`devkit` sets up the project; `dev-workflow` guides development afterward.**
+The entry skill stays in your personal installation; the 17 workflow skills are local to each project.
+For explicit terminal commands and all parameters, see [optional CLI import](docs/CLI-IMPORT.md).
 
 ## What's included
 
 | Capability | What it gives you |
 | --- | --- |
-| **17 skills** | Reusable instructions for requirements, design, implementation, debugging, review, and kit maintenance |
+| **1 entry + 17 project skills** | Reusable instructions for requirements, design, implementation, debugging, review, and kit maintenance |
 | **Optional multi-agent development** | A coordinator, scoped implementer tasks, and separate review; independent work can run in parallel when authorized and supported |
 | **Optional agentic loop** | Implement → test → review → fix, with agreed attempt/time budgets and stop conditions |
 | **Models by role** | Choose available models for planning, implementation, review, debugging, and research |
@@ -88,6 +96,7 @@ Multi-agent execution uses your client's tools. The kit does not ship an agent r
 
 | Purpose | Skills | Source |
 | --- | --- | --- |
+| Set up a new or existing project | `devkit` (installed personally) | Original |
 | Start or resume work | `dev-workflow` | Original |
 | Clarify requirements and domain | `grilling`, `domain-modeling`, `grill-with-docs` | Matt Pocock |
 | Write specifications and slices | `to-spec`, `to-tickets` | Matt Pocock |
@@ -147,7 +156,7 @@ Propose what to integrate, why, and how to verify it.
 
 Reports go into `docs/updates/`. Select what to apply with `Use $update-devkit. Apply U-01 from [report path].` No automatic adoption or propagation to existing projects. If discovery fails, ask the agent to read `skills/update-devkit/SKILL.md` directly.
 
-**Verify files:** run from the kit directory:
+**Verify files (optional Python CLI):** run from a cloned kit directory:
 
 ```bash
 python3 tools/verify.py                                      # Check vendor snapshot hashes
@@ -155,7 +164,7 @@ python3 -m unittest discover -s tests -v                     # Test the bootstra
 python3 tools/verify.py --project "$HOME/Projects/my-store"  # Find changes since import
 ```
 
-Integrity checks confirm expected file copies, not application quality. Project changes may be intentional. Verifier exit codes: `0` unchanged, `1` modified/missing project files, `2` error. Use `--help` for command help.
+Integrity checks confirm expected file copies, not application quality. Project changes may be intentional. Without Python, ask `$devkit` to inspect the installed state with file/hash tools. Verifier exit codes: `0` unchanged, `1` modified/missing project files, `2` error. Use `--help` for command help.
 
 ## Further reading
 

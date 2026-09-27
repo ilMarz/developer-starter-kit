@@ -1,5 +1,9 @@
 # Getting started
 
+If you arrived through the personal `devkit` entry skill, inspect `.devkit/setup.md` for
+source provenance, checks, and instruction merges already performed. Reuse that work.
+`devkit` prepares the project; the local `dev-workflow` below handles development.
+
 1. Check `.devkit/import.json`: any `pending_manual_merges` require merging proposals in
    `.devkit/proposed/` with existing instructions. Do not overwrite them.
 2. Open the project directory in Codex. Use the local `dev-workflow`. If global copies share

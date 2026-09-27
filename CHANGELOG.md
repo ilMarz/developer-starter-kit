@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 — September 27, 2026
+
+- Add standalone `devkit` entry skill under `installer/devkit`: install once, initialize or
+  integrate projects from chat, and hand off to their local `dev-workflow`.
+- Support agent-executed import without Python using file/comparison/hash tools; retain the
+  deterministic Python CLI as an optional path. No runtime is installed by the entry skill.
+- Preserve existing instructions and application files, record source provenance and merges,
+  and distinguish preview-only, setup-only, and development requests.
+- Keep the 17 project skills and 15 vendor snapshots unchanged; the entry skill is installed separately.
+- Lead the README with chat-based setup; move detailed terminal instructions to docs/CLI-IMPORT.md.
+
 ## 0.2.1 — September 27, 2026
 
 - Translate all original documentation, templates, skills, and CLI messages into English.

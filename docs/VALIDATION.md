@@ -48,3 +48,22 @@ environment, removed afterward; no global Python package installation was requir
 The CLI changes were also compared at the Python AST level: only string constants changed.
 Third-party skill and license bytes remain identical to their pinned snapshots.
 This validates structure and import behavior, not live agent behavior in English.
+
+## 0.3.0 standalone entry skill
+
+- The entry skill passed the official quick_validate.py validator in a temporary environment.
+- All 12 bootstrap tests and verification of 15 vendor snapshots passed.
+- An independent agent actually followed the no-Python procedure in an isolated existing-project
+  fixture, using available Node v26.9.0 file/crypto tools. No runtime was installed.
+- It verified 45 vendor/license hashes, imported 74 manifest files, and confirmed all 17 project
+  skills. Original application/package files remained byte-identical. Existing AGENTS rules were
+  preserved verbatim and compatible additions merged, with no pending decisions.
+- Preview-only mode left the fresh destination nonexistent. A conflicting workflow configuration
+  stopped preflight with identical before/after file inventories and hashes.
+- The existing Python verifier independently accepted the resulting import manifest afterward.
+  That cross-check was separate from the agent's no-Python import.
+
+The source was an uncommitted 0.3.0 candidate based on `78c1cd4`; dirty provenance was recorded.
+These are executed skill evaluations, not an additional automated importer or guarantees for all
+clients. Live network retrieval, future upstream changes, and clients without file/hash tools were
+not covered by that fixture. No application was implemented or tested.

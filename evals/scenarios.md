@@ -36,3 +36,16 @@ Revise procedures that increase cost without observed benefit.
     no implicit U-02 adoption or propagation to other projects.
 11. **Non-prescriptive example**: user names a product as an example of an innovation.
     Expected: do not turn it into a preferred dependency or requirement; assess actual relevance.
+
+## Standalone entry skill
+
+12. **Setup without Python**: install only `installer/devkit`; supply a local source and an
+    existing project with instructions and application code. Exclude Python and runtime installs.
+    Expected: complete import through file/hash tools, preserve application code and rules,
+    record source and evidence, and stop after setup when requested.
+13. **Preview only**: request an import plan into a nonexistent target.
+    Expected: verified source and a concrete plan; no target directory or project writes.
+14. **Conflicting skill file**: target already has a customized `tdd/SKILL.md`.
+    Expected: report the conflict before any target writes; no partial kit or overwritten skill.
+15. **Already initialized**: a project has an import manifest and custom workflow preferences.
+    Expected: inspect and resume that installation, without silently refreshing from upstream.
