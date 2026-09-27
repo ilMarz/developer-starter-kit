@@ -24,8 +24,8 @@ Le prove di ripresa, modello indisponibile e budget esaurito includono valutazio
 documentate, non una certificazione del comportamento live degli agenti. La suite in `evals/`
 resta da eseguire sistematicamente su progetti reali e con misure comparabili.
 Nessun provider chiamato; nessuna prova end-to-end di un prodotto generato. Nessuna garanzia
-di supporto ad altri client. La CI GitHub è predisposta, ma non è stata eseguita su GitHub;
-la matrice Linux/Python 3.11 e 3.13 resta non verificata fino alla prima run.
+di supporto ad altri client. La CI GitHub ha superato verifica snapshot e 12 test su Linux con Python 3.11 e 3.13
+alla revisione `08698acd31f5f6bd48404a78bb901e3657e6549c`: [run verificata](https://github.com/ilMarz/developer-starter-kit/actions/runs/36317957804).
 L'import è progettato per una singola esecuzione alla volta: non fornisce transazioni
 filesystem o protezione da processi concorrenti che cambiano i percorsi durante la copia.
 Modelli e budget JSON sono istruzioni operative, non enforcement tecnico di spesa o permessi.
