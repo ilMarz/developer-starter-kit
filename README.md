@@ -3,9 +3,19 @@
 Versione **0.2.0** · ricerca del 27 settembre 2026.
 Kit autonomo per sviluppare con agenti AI: 17 skill, template per specifiche/ADR/slice,
 loop di sviluppo, scelta del subset e dei modelli, importazione conservativa e verifiche.
-Puoi spostare questa cartella e trasformarla nel tuo repository. Non dipende da altri progetti.
+Repository autonomo: puoi spostare questa cartella. Non dipende da altri progetti.
 
 ## 1. Apri il terminale nella cartella del kit
+
+Per scaricarlo su un altro computer con GitHub già autenticato:
+
+```bash
+git clone https://github.com/ilMarz/developer-starter-kit.git
+cd developer-starter-kit
+```
+
+Il repository è privato: l’account usato deve avere accesso. Se hai già il kit in locale,
+non clonarlo di nuovo.
 
 Tutti i comandi Python sotto partono dalla cartella che contiene questo README.
 Se sei nella directory che contiene il kit:
