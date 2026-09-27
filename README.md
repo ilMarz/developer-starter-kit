@@ -1,42 +1,46 @@
 # Developer Starter Kit
 
 **A reusable toolkit for building software with AI agents, from a new idea or inside an existing codebase.**
-Install one entry skill, then ask it to add 17 project skills, development conventions, planning templates, and a configurable implementation/review workflow.
+Copy this whole repository into your skills directory, then ask it to add 17 project skills, development conventions, planning templates, and a configurable implementation/review workflow.
 
 **How it works:** install `devkit` once → open a project → ask it to set up the kit → choose your working approach → implement and verify.
 The import prepares your project for this workflow; the agent then helps build the application.
 
 ## Quick start — install once, use from chat
 
-### 1. Install the entry skill in Codex
+### 1. Copy the whole repository into Codex skills
 
-Paste this into **Codex chat**:
+Download this repository as a ZIP and extract it. Rename the extracted folder to **devkit**
+and copy the **entire folder** into **~/.codex/skills/** (or your custom CODEX_HOME/skills).
+
+The result should be:
 
 ```text
-Use $skill-installer to install the devkit skill from
-https://github.com/ilMarz/developer-starter-kit/tree/main/installer/devkit
+~/.codex/skills/devkit/
+├── SKILL.md
+├── agents/
+├── references/
+├── skills/                 # 17 bundled project skills
+├── template/
+├── licenses/
+├── import-contract.json
+└── skills.lock.json
 ```
 
-The entry skill is self-contained: you do not need to clone the whole kit first.
-It retrieves a source snapshot when setting up a project. You need an agent with file tools
-and access to the source repository (or an existing local copy).
-**No setup scripts or language runtime are required to use the kit.** The agent imports
-with file/comparison/hash tools. It checks the full plan before writing and records the result.
-Git and Bash are required only for the helpers that use them.
+Keep the other repository files too; this diagram shows the main parts.
+**Everything needed for kit setup is included. No additional downloads or source path are needed.**
+The agent uses this installed folder directly, even without Git metadata or network access.
+It needs file/comparison/hash tools, not Python or an installation runtime.
+Git and Bash are needed only for development helpers that use them.
 
-Prefer to clone and install manually? From a terminal:
+Alternatively, clone directly into the destination if it does not already exist:
 
 ```bash
-git clone https://github.com/ilMarz/developer-starter-kit.git
-cd developer-starter-kit
-skill_dir="${CODEX_HOME:-$HOME/.codex}/skills/devkit"
-if [ -e "$skill_dir" ] || [ -L "$skill_dir" ]; then
-  echo "devkit already exists; compare before updating."
-else
-  mkdir -p "$(dirname "$skill_dir")"
-  cp -R installer/devkit "$skill_dir"
-fi
+git clone https://github.com/ilMarz/developer-starter-kit.git "${CODEX_HOME:-$HOME/.codex}/skills/devkit"
 ```
+
+If devkit is already installed, preserve customizations and compare versions before replacing it.
+Do not copy only SKILL.md or create an extra nested repository folder inside devkit.
 
 ### 2. Create a project from scratch
 
@@ -73,8 +77,8 @@ Inspect the checkout and tests, then propose the first slice and working approac
 ```
 
 **`devkit` sets up the project; `dev-workflow` guides development afterward.**
-The entry skill stays in your personal installation; the 17 workflow skills are local to each project.
-See the [import procedure](installer/devkit/references/tool-based-import.md) for preservation and verification rules.
+The complete kit stays in your personal installation; the 17 workflow skills are local to each project.
+See the [import procedure](references/tool-based-import.md) for preservation and verification rules.
 
 ## What's included
 

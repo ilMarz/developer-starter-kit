@@ -82,3 +82,14 @@ test('invalid hashes fail as malformed metadata', t => {
   fs.writeFileSync(path.join(root, '.devkit/import.json'), JSON.stringify(manifest));
   assert.throws(() => verifyProject(root), /Invalid hash/);
 });
+test('whole-folder installation validates without Git metadata', t => {
+  const root = fixture(t);
+  fs.cpSync(ROOT, root, {
+    recursive: true, verbatimSymlinks: true,
+    filter: source => !path.relative(ROOT, source).split(path.sep).some(p => ['.git', '__pycache__'].includes(p))
+  });
+  assert.equal(fs.existsSync(path.join(root, '.git')), false);
+  assert.equal(fs.existsSync(path.join(root, 'SKILL.md')), true);
+  assert.equal(fs.existsSync(path.join(root, 'references/tool-based-import.md')), true);
+  assert.deepEqual(checkKit(root), { vendorFiles: 45, vendorSkills: 15, skills: 18 });
+});

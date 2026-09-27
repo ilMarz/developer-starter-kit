@@ -19,7 +19,7 @@ Use the same mapping, including hidden files:
 | `skills.lock.json` | `.devkit/skills.lock.json` |
 | `THIRD_PARTY_NOTICES.md` | `.devkit/THIRD_PARTY_NOTICES.md` |
 
-Do not copy the source `.git/`, `.agents/` discovery symlinks, `installer/`, tests, tools,
+Do not copy the source `.git/`, `.agents/` discovery symlinks, the root `SKILL.md`, `agents/`, `references/`, tests, tools,
 or maintenance documents. Copy source bytes exactly. Generate only the project configuration
 and import manifest described below. Do not write an application scaffold during import.
 

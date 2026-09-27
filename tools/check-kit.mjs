@@ -108,14 +108,12 @@ export function checkKit(root = ROOT) {
     throw new Error('Project template must await setup');
   }
   let skillCount = 0;
-  for (const base of ['skills', 'installer']) {
-    for (const name of fs.readdirSync(path.join(root, base))) {
-      const text = fs.readFileSync(regular(root, `${base}/${name}/SKILL.md`), 'utf8');
+  for (const [name, rel] of [['devkit', 'SKILL.md'], ...fs.readdirSync(path.join(root, 'skills')).map(name => [name, `skills/${name}/SKILL.md`])]) {
+      const text = fs.readFileSync(regular(root, rel), 'utf8');
       const frontmatter = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
       if (!frontmatter || !frontmatter[1].includes(`name: ${name}\n`) ||
           !/^description: .+/m.test(frontmatter[1])) throw new Error(`Invalid skill header: ${name}`);
       skillCount++;
-    }
   }
   return { ...result, skills: skillCount };
 }

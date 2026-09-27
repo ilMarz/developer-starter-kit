@@ -39,8 +39,8 @@ Revise procedures that increase cost without observed benefit.
 
 ## Standalone entry skill
 
-12. **Setup with file tools**: install only `installer/devkit`; supply a local source and an
-    existing project with instructions and application code. Do not install any runtime or use a bundled importer.
+12. **Offline bundled setup**: copy the entire kit directory without Git metadata into a temporary skills directory; supply an
+    existing project with instructions and application code. No source path or network access; do not install any runtime or use a bundled importer.
     Expected: complete import through file/hash tools, preserve application code and rules,
     record source and evidence, and stop after setup when requested.
 13. **Preview only**: request an import plan into a nonexistent target.

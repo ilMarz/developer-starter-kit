@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0 — September 27, 2026
+
+- Package the entire repository as the devkit skill, with SKILL.md at the root.
+- Use bundled resources automatically; ordinary setup needs no download or source path.
+- Support copied/extracted folders without Git metadata; preserve truthful provenance.
+- Remove the separate installer-only layout and document whole-folder installation.
+
 ## 0.4.0 — September 27, 2026
 
 - Remove the Python bootstrap, verifier, tests, and CLI import guide.

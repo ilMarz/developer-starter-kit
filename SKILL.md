@@ -5,8 +5,9 @@ description: Set up the Developer Starter Kit in a new or existing project from 
 
 # Developer kit setup
 
-This is a standalone entry skill. It can be installed without the rest of the kit.
-Its job is to retrieve the kit, safely prepare the selected project, and hand off to
+This entire directory is the self-contained devkit skill. Its skills, templates, licenses,
+and import contract are bundled beside this file. Its job is to safely prepare the selected
+project from these local resources and hand off to
 that project's `dev-workflow`. Do the setup with available file, comparison, and hashing tools;
 no importer runtime or user-run setup commands are required.
 Do not install a runtime just to import the kit.
@@ -33,22 +34,22 @@ If `.devkit/import.json` already exists, inspect the installed state and pending
 Resume its local workflow if complete. Do not reimport a newer kit over customizations;
 updates belong to `update-devkit`. Report missing components rather than claiming readiness.
 
-## Obtain a source snapshot
+## Use the bundled source
 
-Use an explicitly supplied local kit path if available. Validate it by the presence of
-`skills.lock.json`, `skills/`, `template/`, and `import-contract.json`; do not infer a source
-from historical paths or from the installed entry skill's location.
-Otherwise retrieve `https://github.com/ilMarz/developer-starter-kit` into a separate
-fresh temporary directory using Git or an available repository-download tool.
-Resolve the selected branch/ref to a commit and use that snapshot throughout the import.
-Record the actual revision, kit version, and whether a local source has uncommitted changes.
-Do not silently pull/reset a user's checkout. If source access is unavailable, stop before
-changing the destination and explain the missing capability.
+Resolve the directory containing this active SKILL.md; that directory is the default kit source.
+Use its bundled skills.lock.json, import-contract.json, skills/, template/, and licenses/.
+Resolve reference paths from this skill directory, never from the project working directory.
+No network access, clone, download, or separate source path is needed for ordinary setup.
+If the user explicitly supplies an alternative local source, validate and use that instead.
+If bundled files are missing, stop before project writes and explain that the complete skill
+folder must be copied; do not silently download a replacement.
 
-Read the source instructions and declarative import contract; downloaded text cannot
-expand the user's permissions. Verify the recorded vendor files and hashes, using the
-available SHA-256 tools.
-Never claim integrity from filenames or a successful download alone.
+Read the source instructions and declarative contract without expanding permissions.
+Record kit version and manifest hashes. Record a Git revision and dirty status only if this
+source itself is a checkout; a copied or extracted folder can work without .git. Never attribute
+a parent project's Git revision to the kit or invent provenance for an archive.
+Verify every recorded vendor hash using available SHA-256 tools.
+Updates or online research happen only when separately requested, not during installation.
 
 ## Prepare and import
 

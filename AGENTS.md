@@ -12,6 +12,6 @@ To discover improvements and update this kit, use `skills/update-devkit/SKILL.md
 The discovery path `.agents/skills/update-devkit` points to the same skill.
 The default mode produces evidence-based proposals, including opportunities outside the inventory.
 
-The standalone entry skill is in `installer/devkit/`, exposed locally through
-`.agents/skills/devkit`. It is installed personally, not copied by the project import.
-Validate its setup behavior in isolated temporary fixtures, using the agent file-tool procedure.
+The whole repository is the installable `devkit` skill, with `SKILL.md` at its root.
+Use bundled resources by default; ordinary setup must not download another copy.
+Validate relocation and offline setup in temporary fixtures, without Git metadata.

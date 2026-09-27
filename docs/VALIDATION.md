@@ -1,13 +1,13 @@
 # Kit validation
 
-## Current checks — 0.4.0
+## Current checks — 0.5.0
 
 The kit has no bundled importer or Python tooling. Setup is performed by the agent using
 file/comparison/hash tools, following import-contract.json and the entry skill.
 
 - `node tools/check-kit.mjs`: passed; 45 vendor/license files, 15 vendor skills, 18 total skills.
-- `node --test tests/*.test.mjs`: 9 tests passed, covering vendor tampering, added/missing files,
-  legacy manifests, drift, read-only inspection, symlinked parents, traversal, and malformed hashes.
+- `node --test tests/*.test.mjs`: 10 tests passed, covering vendor tampering, added/missing files,
+  legacy manifests, drift, read-only inspection, symlinked parents, traversal, malformed hashes, and whole-folder installation without Git metadata.
 - These Node checks are repository-maintenance tools, not prerequisites for installing or using skills.
 - CI runs the same read-only checks with Node supplied by the hosted runner.
 
@@ -42,3 +42,15 @@ The agent must preflight the whole plan, preserve existing files, and verify act
 No application implementation or live provider integration is certified by setup checks.
 Model/budget configuration contains instructions, not technical spending or permission enforcement.
 Resume after compaction and model/budget behavior still require live evaluations on real tasks.
+
+## 0.5.0 whole-folder offline evaluation
+
+An independent agent copied the full kit into a temporary skills/devkit directory, excluding
+Git metadata and caches. It then used only the copied root SKILL.md and its bundled resources:
+no source override, original checkout reads during import, downloads, or network access.
+The skill resolved its own directory as source and imported 74 recorded files and 17 project
+skills after verifying 45 vendor/license hashes. Existing application bytes and conventions
+were preserved; compatible instructions merged. The bundled verifier reported no missing or
+modified imported files. Archive provenance correctly had no Git revision. Preview/conflict
+checks also preserved the destination. This is one actual agent evaluation, not a universal
+client guarantee or an application test.
